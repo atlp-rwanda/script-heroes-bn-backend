@@ -1,16 +1,15 @@
-const fs = require('fs'),
-  http = require('http'),
-  path = require('path'),
-  methods = require('methods'),
-  express = require('express'),
-  bodyParser = require('body-parser'),
-  session = require('express-session'),
-  cors = require('cors'),
-  passport = require('passport'),
-  errorhandler = require('errorhandler'),
-  mongoose = require('mongoose');
+const fs = require("fs"),
+    http = require("http"),
+    path = require("path"),
+    methods = require("methods"),
+    express = require("express"),
+    bodyParser = require("body-parser"),
+    session = require("express-session"),
+    cors = require("cors"),
+    passport = require("passport"),
+    errorhandler = require("errorhandler");
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === "production";
 
 // Create global app object
 const app = express();
@@ -37,15 +36,6 @@ app.use(
 if (!isProduction) {
   app.use(errorhandler());
 }
-
-if (isProduction) {
-  mongoose.connect(process.env.MONGODB_URI);
-} else {
-  mongoose.connect('mongodb://localhost/conduit');
-  mongoose.set('debug', true);
-}
-
-require('./models/User');
 
 app.use(require('./routes'));
 
