@@ -1,18 +1,23 @@
-import { Client } from 'pg';
-
-const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'database',
-  password: 'password',
-  port: 5432
-});
-client.connect((err) => {
-  if (err) {
-    console.error('connection error', err.stack);
-  } else {
-    console.log('Connected to database !!!');
+module.exports = {
+  development: {
+    username: 'admin',
+    password: 'admin',
+    database: 'postgres',
+    host: '127.0.0.1',
+    dialect: 'postgres'
+  },
+  test: {
+    username: 'admin',
+    password: 'admin',
+    database: 'postgres',
+    host: '127.0.0.1',
+    dialect: 'postgres'
+  },
+  production: {
+    username: 'admin',
+    password: 'admin',
+    database: 'postgres',
+    host: '127.0.0.1',
+    dialect: 'postgres'
   }
-});
-
-export default Client;
+};

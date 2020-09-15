@@ -8,4 +8,23 @@ Make company global travel and accommodation easy and convenient for the strong 
 
 This is the swagger API [documentation](https://script-heroes-bn-backend-stgng.herokuapp.com/api-docs/) link
 
+## Heroku backend endpoint
+
+This the heroku staging Api https://script-heroes-bn-backend-stgng.herokuapp.com/
+
+This the production Api   https://script-heroes-bn-backend.herokuapp.com/
 ---
+
+
+## Sequelize and Sequelize-cli
+
+# 1 Installing cli
+`npm install`
+
+# 2 Running Migrations
+
+`sequelize db:migrate`
+
+# 3 Running Seeds
+
+`sequelize db:seed:all`
