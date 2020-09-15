@@ -2,13 +2,15 @@ language: node_js
 node_js: node
 
 services:
-- postgresql
+  - postgresql
 
 cache:
   directories:
     - node_modules
 script:
   - npm install
+  - sequelize db:migrate
+  - sequelize db:seed:all
   - npm test
 after_success:
   - npm run coverage
