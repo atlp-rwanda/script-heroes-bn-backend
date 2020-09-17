@@ -1,6 +1,6 @@
-const router = require("express").Router();
+import express from 'express';
 
-router.use("/", require("./users"));
+const router = express.Router();
 
 router.use(function(err, req, res, next) {
     if (err.name === "ValidationError") {
@@ -15,4 +15,4 @@ router.use(function(err, req, res, next) {
     return next(err);
 });
 
-module.exports = router;
+export default router;
