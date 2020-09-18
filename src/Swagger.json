@@ -1,0 +1,135 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Barefoot Nomad",
+    "description": "Documentation for Script Heroes' project(Barefoot Nomad)",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "description": "Obtain information about users from database",
+        "parameters": [
+          {
+            "name": "bodyLimit",
+            "in": "query",
+            "description": "The amount of users returned",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "maximum": 50,
+              "minimum": 10,
+              "type": "integer",
+              "example": 35
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful  pull of users info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new employee in database",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created new user"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "description": "Obtain info a specific user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of a user",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "example": 34
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Users": {
+        "type": "array",
+        "description": "Array of users info",
+        "items": {
+          "$ref": "#/components/schemas/User"
+        }
+      },
+      "User": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 4
+          },
+          "user name": {
+            "type": "string",
+            "example": "Bey Faith"
+          },
+          "user email": {
+            "type": "string",
+            "example": "fryumugabe@gmail.com"
+          }
+        },
+        "description": "Model containing user info"
+      }
+    }
+  }
+}
