@@ -8,7 +8,7 @@ import session from 'express-session';
 import cors from 'cors';
 import errorhandler from 'errorhandler';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from './swagger.json';
+import swaggerDocument from '../swagger.json';
 import routers from './routes';
 import Client from './database/config';
 

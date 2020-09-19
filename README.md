@@ -6,6 +6,6 @@
 
 Make company global travel and accommodation easy and convenient for the strong workforce of savvy members of staff, by leveraging the modern web.
 
-This is the swagger API [documentation](https://app.swaggerhub.com/apis-docs/BeyFaith/Barefoot-Nomad/1.0.0) link
+This is the swagger API [documentation](https://script-heroes-bn-backend-stgng.herokuapp.com/api-docs/) link
 
 ---
