@@ -7,6 +7,8 @@ import bodyParser from 'body-parser';
 import session from 'express-session';
 import cors from 'cors';
 import errorhandler from 'errorhandler';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.json';
 import routers from './routes';
 import Client from './database/config';
 
@@ -34,6 +36,8 @@ app.use(
   })
 );
 
+app.use('/api-docs', swaggerUi.serve);
+app.get('/api-docs', swaggerUi.setup(swaggerDocument));
 if (!isProduction) {
   app.use(errorhandler());
 }
