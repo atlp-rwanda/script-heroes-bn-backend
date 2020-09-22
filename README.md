@@ -1,5 +1,5 @@
-[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
-[![Build Status](https://travis-ci.org/atlp-rwanda/script-heroes-bn-backend.svg?branch=develop)](https://travis-ci.org/atlp-rwanda/script-heroes-bn-backend)
+[![Build Status](https://travis-ci.org/atlp-rwanda/script-heroes-bn-backend.svg?branch=develop)](https://travis-ci.org/atlp-rwanda/script-heroes-bn-backend) [![Coverage Status](https://coveralls.io/repos/github/atlp-rwanda/script-heroes-bn-backend/badge.svg?branch=develop)](https://coveralls.io/github/atlp-rwanda/script-heroes-bn-backend?branch=develop) [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
+
 # Barefoot Nomad - Making company travel and accomodation easy and convinient.
 
 ## Vision
