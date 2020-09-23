@@ -5,6 +5,8 @@ import errorhandler from 'errorhandler';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
 
+require('dotenv').config();
+
 const isProduction = process.env.NODE_ENV === 'production';
 
 // Create global app object
