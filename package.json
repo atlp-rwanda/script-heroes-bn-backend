@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
+  "engines": {
+    "node": "10.19.0"
+  },
   "scripts": {
     "start": "node dist/index",
     "dev": "nodemon --exec babel-node src/index.js",
