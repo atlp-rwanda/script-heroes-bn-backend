@@ -148,6 +148,38 @@
           }
         }
       }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "description": "Logout to barefoot nomad",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authentication",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Logout success"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
     }
   },
   "components": {

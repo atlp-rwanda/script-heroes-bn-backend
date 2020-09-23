@@ -4,15 +4,16 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import errorhandler from 'errorhandler';
 import swaggerUi from 'swagger-ui-express';
+import cron from 'node-cron';
+import { Op } from 'sequelize';
 import swaggerDocument from '../swagger.json';
-import db from './database/models/index';
+import db, { AccessToken, sequelize } from './database/models/index';
 import i18n from './utils/internationalization/i18n';
 import routes from './routes';
 
 require('dotenv').config();
 
 const isProduction = process.env.NODE_ENV === 'production';
-
 
 const app = express();
 
@@ -58,17 +59,7 @@ if (!isProduction) {
   });
 }
 
-// production error handler
-app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.json({
-    errors: {
-      message: err.message,
-      error: {}
-    }
-  });
-});
-
+// Display db connection
 db.sequelize
   .authenticate()
   .then(() => {
@@ -77,6 +68,19 @@ db.sequelize
   .catch((err) => {
     console.log('Unable to connect to the database:', err);
   });
+
+cron.schedule('0 0 0 * * *', async () => {
+  let expiredDate = new Date(Date.now() - 86400000).toISOString();
+
+  expiredDate = expiredDate.split('T').join(' ');
+  await AccessToken.destroy({
+    where: {
+      createdAt: {
+        [Op.lt]: expiredDate
+      }
+    }
+  });
+});
 
 const server = app.listen(process.env.PORT || 3000, () => {
   console.log(`Listening on port ${server.address().port}`);

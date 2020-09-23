@@ -1,5 +1,5 @@
 import express from 'express';
-import users from './auth/emailAuth';
+import users from './auth/auth';
 
 const router = express.Router();
 
