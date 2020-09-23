@@ -11,6 +11,13 @@
     "sourceType": "module"
   },
   "rules": {
+    "object-curly-newline": 0,
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": ["__"]
+      }
+    ],
     "one-var": 0,
     "one-var-declaration-per-line": 0,
     "new-cap": 0,

@@ -6,6 +6,8 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
 import signupRoute from './routes/signup';
 import db from './database/models/index';
+import Client from './database/config';
+import i18n from './utils/internationalization/i18n';
 
 require('dotenv').config();
 
@@ -26,6 +28,8 @@ app.use(require('method-override')());
 
 app.use(express.static(`${__dirname}/public`));
 
+app.use(i18n.init);
+
 app.use('/api-docs', swaggerUi.serve);
 app.get('/api-docs', swaggerUi.setup(swaggerDocument));
 if (!isProduction) {
@@ -34,7 +38,7 @@ if (!isProduction) {
 
 app.use('/api', signupRoute);
 app.get('/', (req, res, next) => {
-  res.status(200).send({ message: 'Welcome to barefoot nomad' });
+  res.status(200).send({ message: res.__('Welcome to barefoot nomad') });
 });
 
 /// catch 404 and forward to error handler

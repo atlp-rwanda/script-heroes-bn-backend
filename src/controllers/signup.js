@@ -7,9 +7,8 @@ import { User } from '../database/models';
 class signupController {
   async signupUser(req, res) {
     // Validate register before submitting
-    const {
-      firstName, lastName, email, phoneNumber, password
-    } = req.body;
+    const { firstName, lastName, email, phoneNumber, password } = req.body;
+
     const { error } = signupvalidation(req.body);
     if (error) {
       return res.status(400).json({ err: error.details[0].message });
@@ -21,7 +20,7 @@ class signupController {
       where: { email: req.body.email }
     });
     if (emailExist) {
-      return res.status(409).json({ message: 'Email already exists' });
+      return res.status(409).json({ message: res.__('Email already exists') });
     }
 
     // Hashing Password
@@ -38,7 +37,7 @@ class signupController {
       phoneNumber,
       password
     });
-    res.status(201).json({ message: 'Successfully registered' });
+    res.status(201).json({ message: res.__('Successfully registered') });
   }
 }
 export default signupController;
