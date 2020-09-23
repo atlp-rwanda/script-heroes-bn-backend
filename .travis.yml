@@ -1,10 +1,14 @@
 language: node_js
 node_js: node
+
+services:
+- postgresql
+
 cache:
   directories:
     - node_modules
 script:
-  - npm install 
+  - npm install
   - npm test
 after_success:
   - npm run coverage
