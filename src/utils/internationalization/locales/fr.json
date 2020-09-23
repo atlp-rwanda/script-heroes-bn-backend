@@ -1,5 +1,7 @@
 {
   "Welcome to barefoot nomad": "Bienvenue à barefoot nomad",
   "Successfully registered": "Enregistré avec succès",
-  "Email already exists": "l'email existe déjà"
+  "Email already exists": "l'email existe déjà",
+  "Email or password is incorrect": "E-mail ou mot de passe est incorrecte",
+  "Your are successfully loged in": "Vous êtes connecté avec succès"
 }
