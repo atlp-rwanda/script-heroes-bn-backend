@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       // define association here
+      User.belongsTo(models.UserRole, {
+        as: 'role',
+        foreignKey: 'roleId'
+      });
     }
   }
   User.init(
@@ -28,7 +32,15 @@ module.exports = (sequelize, DataTypes) => {
       currency: DataTypes.STRING,
       country: DataTypes.STRING,
       department: DataTypes.STRING,
-      linemanager: DataTypes.INTEGER
+      linemanager: DataTypes.INTEGER,
+      roleId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      },
+      managerId: {
+        type: DataTypes.INTEGER
+      }
     },
     {
       sequelize,

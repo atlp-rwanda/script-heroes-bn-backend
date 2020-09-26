@@ -10,9 +10,7 @@ export const signupValidations = (req, res, next) => {
         'string.base': res.__('First name must be string'),
         'string.empty': res.__('Please fill in your first name'),
         'string.pattern.base': res.__('First name must contain letters only'),
-        'string.min': res.__(
-          'First name must be atleast {#limit} characters long'
-        ),
+        'string.min': res.__('First name must be atleast {#limit} characters long'),
         'any.required': res.__('First Name is required')
       }),
     lastName: Joi.string()
@@ -23,9 +21,7 @@ export const signupValidations = (req, res, next) => {
         'string.base': res.__('Last name must be string'),
         'string.empty': res.__('Please fill in your last name'),
         'string.pattern.base': res.__('Last name must contain letters only'),
-        'string.min': res.__(
-          'Last name must be atleast {#limit} characters long'
-        ),
+        'string.min': res.__('Last name must be atleast {#limit} characters long'),
         'any.required': res.__('Last Name is required')
       }),
     email: Joi.string()
@@ -45,9 +41,7 @@ export const signupValidations = (req, res, next) => {
       .messages({
         'number.base': res.__('Phone Number contain numbers'),
         'number.empty': res.__('Please fill in your Phone Number'),
-        'nunmber.min': res.__(
-          'Phone Number must be atleast {#limit} characters long'
-        ),
+        'nunmber.min': res.__('Phone Number must be atleast {#limit} characters long'),
         'any.required': res.__('Phone Number is required')
       }),
     password: Joi.string()
@@ -57,9 +51,7 @@ export const signupValidations = (req, res, next) => {
       .messages({
         'string.base': res.__('Password must be string'),
         'string.empty': res.__('Please fill in your Password'),
-        'string.min': res.__(
-          'Password must be atleast {#limit} characters long'
-        ),
+        'string.min': res.__('Password must be atleast {#limit} characters long'),
         'any.required': res.__('Password is required'),
         'string.pattern.base': res.__(
           'Password must be at least 5 characters including 4 letters and numbers'
@@ -89,9 +81,7 @@ export const loginValidation = (req, res, next) => {
       .messages({
         'string.base': res.__('Password must be string'),
         'string.empty': res.__('Please fill in your Password'),
-        'string.min': res.__(
-          'Password must be atleast {#limit} characters long'
-        ),
+        'string.min': res.__('Password must be atleast {#limit} characters long'),
         'any.required': res.__('Password is required'),
         'string.pattern.base': res.__(
           'Password must be at least 5 characters including 4 letters and numbers'
