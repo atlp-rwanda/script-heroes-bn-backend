@@ -13,6 +13,8 @@ import i18n from './utils/internationalization/i18n';
 import routes from './routes';
 import googleRouter from './routes/googleRoutes';
 import facebookRoute from './routes/facebookRoutes';
+import roleRegisterRoute from './routes/api/roleRegister.route';
+import roleAssignRoute from './routes/api/roleAssign.route';
 
 require('dotenv').config();
 
@@ -42,6 +44,8 @@ if (!isProduction) {
 app.use('/', googleRouter);
 app.use('/', facebookRoute);
 
+app.use('/api', roleRegisterRoute);
+app.use('/api', roleAssignRoute);
 app.get('/', (req, res, next) => {
   res.status(200).send({ message: res.__('Welcome to barefoot nomad') });
 });
