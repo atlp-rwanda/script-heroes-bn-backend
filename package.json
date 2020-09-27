@@ -10,16 +10,17 @@
     "start": "node dist/index",
     "dev": "nodemon --exec babel-node src/index.js",
     "build": ".\\node_modules\\.bin\\babel src --out-dir dist",
-    "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register --exit",
+    "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register test/* --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Andela Simulations Programme",
   "license": "MIT",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
-    "ejs": "^2.6.1",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
@@ -33,7 +34,7 @@
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
     "request": "^2.87.0",
-    "sequelize": "^6.3.5",
+    "sequelize": "^5.21.2",
     "swagger-ui-express": "^4.1.4",
     "underscore": "^1.9.1"
   },

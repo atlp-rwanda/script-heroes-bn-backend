@@ -37,3 +37,23 @@ Note: If you make changes that uses environmental variables make sure to add tho
 ### 3 Running Seeds
 
 `sequelize db:seed:all`
+
+## Signup Endpoint
+
+### User Registration Model
+
+```
+{
+    "firstName": "name",
+    "lastName": "lastName",
+    "email": "example@email.com",
+    "phoneNumber": "12345678",
+    "password": "mypassword"
+}
+```
+
+### Testing Endpoint
+
+- Send a post request using postman
+- Hosted url: https://script-heroes-bn-backend-stgng.herokuapp.com/
+- Local url: http://localhost:3000/api/signup

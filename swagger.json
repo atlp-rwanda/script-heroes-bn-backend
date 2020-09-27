@@ -11,7 +11,7 @@
     }
   ],
   "paths": {
-    "/users": {
+    "/api/signup": {
       "get": {
         "description": "Obtain information about users from database",
         "parameters": [
@@ -44,7 +44,7 @@
         }
       },
       "post": {
-        "description": "Creates a new employee in database",
+        "description": "Creates a new user in database",
         "requestBody": {
           "content": {
             "application/json": {

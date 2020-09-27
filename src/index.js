@@ -4,6 +4,8 @@ import cors from 'cors';
 import errorhandler from 'errorhandler';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
+import signupRoute from './routes/signup';
+import db from './database/models/index';
 
 require('dotenv').config();
 
@@ -30,6 +32,7 @@ if (!isProduction) {
   app.use(errorhandler());
 }
 
+app.use('/api', signupRoute);
 app.get('/', (req, res, next) => {
   res.status(200).send({ message: 'Welcome to barefoot nomad' });
 });
@@ -69,6 +72,16 @@ app.use((err, req, res, next) => {
     }
   });
 });
+
+// Display db connection
+db.sequelize
+  .authenticate()
+  .then((err) => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch((err) => {
+    console.log('Unable to connect to the database:', err);
+  });
 
 // finally, let's start our server...
 const server = app.listen(process.env.PORT || 3000, () => {
