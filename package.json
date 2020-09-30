@@ -9,9 +9,13 @@
   "scripts": {
     "start": "npm run build && node dist/index",
     "dev": "nodemon --exec babel-node src/index.js",
-    "build": ".\\node_modules\\.bin\\babel src --out-dir dist",
-    "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register test/* --exit",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "build": "babel src --out-dir dist",
+    "test": "npm run pretest && nyc --reporter=html --reporter=text mocha -r @babel/register test/* --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "migration:undo": "sequelize db:migrate:undo:all",
+    "migrate": "sequelize db:migrate",
+    "seed": "sequelize db:seed:all",
+    "pretest": "export NODE_ENV=test && npm run migration:undo && npm run migrate && npm run seed"
   },
   "author": "Andela Simulations Programme",
   "license": "MIT",

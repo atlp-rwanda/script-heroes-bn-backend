@@ -42,18 +42,18 @@ Note: If you make changes that uses environmental variables make sure to add tho
 
 ### User Registration Model
 
-```
+```json
 {
-    "firstName": "name",
-    "lastName": "lastName",
-    "email": "example@email.com",
-    "phoneNumber": "12345678",
-    "password": "mypassword"
+  "firstName": "name",
+  "lastName": "lastName",
+  "email": "example@email.com",
+  "phoneNumber": "12345678",
+  "password": "mypassword"
 }
 ```
 
-### Testing Endpoint
+### Endpoints
 
-- Send a post request using postman
 - Hosted url: https://script-heroes-bn-backend-stgng.herokuapp.com/
-- Local url: http://localhost:3000/api/signup
+- Signup: `/api/auth/signup`
+- Login: `/api/auth/login`
