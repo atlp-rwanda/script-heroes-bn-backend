@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc */
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
@@ -15,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.UserRole, {
         as: 'role',
         foreignKey: 'roleId'
+      });
+
+      User.hasMany(models.Request, {
+        foreignKey: 'userId',
+        as: 'requests'
       });
     }
   }
