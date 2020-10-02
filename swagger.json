@@ -180,6 +180,511 @@
           }
         }
       }
+    },
+    "/api/profile": {
+      "get": {
+        "description": "Obtain profile information of users from the database",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authentication",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "responses": {
+            "200": {
+              "description": "Successful  pull of user updated info",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Updated Profile"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "User with provided email not found"
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "401": {
+              "description": "Access denied"
+            }
+          }
+        }
+      }
+    },
+    "/api/profile/update": {
+      "put": {
+        "description": "Update profile information of logged in user",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authentication",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "first name": {
+                    "type": "string",
+                    "example": "JOHN"
+                  },
+                  "last name": {
+                    "type": "string",
+                    "example": "Doe"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "example": "Male"
+                  },
+                  "birthdate": {
+                    "type": "date",
+                    "example": "1856-02-09"
+                  },
+                  "language": {
+                    "type": "string",
+                    "example": "English"
+                  },
+                  "currency": {
+                    "type": "string",
+                    "example": "US$"
+                  },
+                  "country": {
+                    "type": "string",
+                    "example": "Rwanda"
+                  },
+                  "role": {
+                    "type": "string",
+                    "example": "Software Developer"
+                  },
+                  "department": {
+                    "type": "string",
+                    "example": "IT"
+                  },
+                  "linemanager": {
+                    "type": "string",
+                    "example": "JANE Doe"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successfuly updated user profile info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Updated Profile"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User with profided email not found"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Server error"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/api/profile/complete": {
+      "put": {
+        "description": "complete profile information of logged in user after succesful registration",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authentication",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "gender": {
+                    "type": "string",
+                    "example": "Male"
+                  },
+                  "birthdate": {
+                    "type": "date",
+                    "example": "1856-02-09"
+                  },
+                  "language": {
+                    "type": "string",
+                    "example": "Kinyarwanda"
+                  },
+                  "currency": {
+                    "type": "string",
+                    "example": "US$"
+                  },
+                  "country": {
+                    "type": "string",
+                    "example": "Rwanda"
+                  },
+                  "role": {
+                    "type": "string",
+                    "example": "Software Developer"
+                  },
+                  "department": {
+                    "type": "string",
+                    "example": "IT"
+                  },
+                  "linemanager": {
+                    "type": "string",
+                    "example": "JANE Doe"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successfuly completed user profile info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profile"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "api/accommodations":{
+      "post": {
+        "description": "Creating an accommodation",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authenticated admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json": {
+              "schema":{
+                "type": "object",
+                "properties":{
+                  "facilityName":{
+                    "type": "string",
+                    "example": "Peace view hotel"
+                  },
+                  "description":{
+                    "type": "string",
+                    "example": "Hotel located in Gisenyi town"
+                  },
+                  "locationId": {
+                    "type": "integer",
+                    "example": 4
+                  },
+                  "roomType":{
+                    "type": "string",
+                    "example": "Classic"
+                  },
+                  "photoUrl":{
+                    "type": "string",
+                    "example": "http://photourl"
+                  }
+                }
+              }
+            }
+          },
+        "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Accommodation created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accommodation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      }, 
+      "get": {
+        "description": "Getting an accommodation",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authenticated admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Get all accommodations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accommodation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      } 
+    },
+    "api/accommodations/{id}":{
+      "put": {
+        "description": "Updating an accommodation",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authenticated admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json": {
+              "schema":{
+                "type": "object",
+                "properties":{
+                  "facilityName":{
+                    "type": "string",
+                    "example": "Peace view hotel"
+                  },
+                  "description":{
+                    "type": "string",
+                    "example": "Hotel located in Gisenyi town"
+                  },
+                  "locationId": {
+                    "type": "integer",
+                    "example": 4
+                  },
+                  "photoUrl":{
+                    "type": "string",
+                    "example": "http://photourl"
+                  }
+                }
+              }
+            }
+          },
+        "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Accommodation updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accommodation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      },
+      "get": {
+        "description": "Getting a single accommodation",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authenticated admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Get a single accommodation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accommodation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      },
+      "delete": {
+        "description": "Deleting an accommodation",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authenticated admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Accommodation deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type":"object",
+                  "properties": {
+                    "message":{
+                      "type":"string",
+                      "example": "Accommodation deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      } 
+    },
+    "api/accommodations/{id}/rooms":{
+      "post": {
+        "description": "Creating room in an accommodation",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authenticated admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json": {
+              "schema":{
+                "type": "object",
+                "properties":{
+                  "accomodationId": {
+                    "type": "integer",
+                    "example": 4
+                  },
+                  "roomType":{
+                    "type": "string",
+                    "example": "Classic"
+                  }
+                }
+              }
+            }
+          },
+        "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Room created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/room"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      }, 
+      "get": {
+        "description": "Getting room in an accommodation",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authenticated admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Get all accommodations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -309,208 +814,52 @@
           }
         },
         "description": "Model containing user profile info"
-      }
-    }
-  },
-  "/api/profile": {
-    "get": {
-      "description": "Obtain profile information of users from the database",
-      "parameters": [
-        {
-          "in": "header",
-          "name": "x-auth-token",
-          "description": "a token for authentication",
-          "required": true,
-          "type": "string"
-        }
-      ],
-      "responses": {
-        "responses": {
-          "200": {
-            "description": "Successful  pull of user updated info",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Updated Profile"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "User with provided email not found"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "401": {
-            "description": "Access denied"
-          }
-        }
-      }
-    }
-  },
-  "/api/profile/update": {
-    "put": {
-      "description": "Update profile information of logged in user",
-      "parameters": [
-        {
-          "in": "header",
-          "name": "x-auth-token",
-          "description": "a token for authentication",
-          "required": true,
-          "type": "string"
-        }
-      ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "first name": {
-                  "type": "string",
-                  "example": "JOHN"
-                },
-                "last name": {
-                  "type": "string",
-                  "example": "Doe"
-                },
-                "gender": {
-                  "type": "string",
-                  "example": "Male"
-                },
-                "birthdate": {
-                  "type": "date",
-                  "example": "1856-02-09"
-                },
-                "language": {
-                  "type": "string",
-                  "example": "English"
-                },
-                "currency": {
-                  "type": "string",
-                  "example": "US$"
-                },
-                "country": {
-                  "type": "string",
-                  "example": "Rwanda"
-                },
-                "role": {
-                  "type": "string",
-                  "example": "Software Developer"
-                },
-                "department": {
-                  "type": "string",
-                  "example": "IT"
-                },
-                "linemanager": {
-                  "type": "string",
-                  "example": "JANE Doe"
-                }
-              }
-            }
-          }
-        },
-        "required": true
       },
-      "responses": {
-        "201": {
-          "description": "Successfuly updated user profile info",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Updated Profile"
-              }
-            }
+      "room": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 4
+          },
+          "userId": {
+            "type": "integer",
+            "example": 1
+          },
+          "accomodationId":{
+            "type": "integer",
+            "example": 4
+          },
+          "isBooked":{
+            "type": "boolean",
+            "example": false
           }
-        },
-        "404": {
-          "description": "User with profided email not found"
-        },
-        "400": {
-          "description": "Bad request"
-        },
-        "500": {
-          "description": "Server error"
-        },
-        "401": {
-          "description": "Access denied"
         }
-      }
-    }
-  },
-  "/api/profile/complete": {
-    "put": {
-      "description": "complete profile information of logged in user after succesful registration",
-      "parameters": [
-        {
-          "in": "header",
-          "name": "x-auth-token",
-          "description": "a token for authentication",
-          "required": true,
-          "type": "string"
-        }
-      ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "gender": {
-                  "type": "string",
-                  "example": "Male"
-                },
-                "birthdate": {
-                  "type": "date",
-                  "example": "1856-02-09"
-                },
-                "language": {
-                  "type": "string",
-                  "example": "Kinyarwanda"
-                },
-                "currency": {
-                  "type": "string",
-                  "example": "US$"
-                },
-                "country": {
-                  "type": "string",
-                  "example": "Rwanda"
-                },
-                "role": {
-                  "type": "string",
-                  "example": "Software Developer"
-                },
-                "department": {
-                  "type": "string",
-                  "example": "IT"
-                },
-                "linemanager": {
-                  "type": "string",
-                  "example": "JANE Doe"
-                }
-              }
-            }
-          }
-        },
-        "required": true
       },
-      "responses": {
-        "201": {
-          "description": "Successfuly completed user profile info",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Profile"
-              }
+      "accommodation": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 4
+          },
+          "locationId": {
+            "type": "integer",
+            "example": 1
+          },
+          "facilityName":{
+            "type": "string",
+            "example": "Peace view hotel"
+          },
+          "description":{
+            "type": "string",
+            "example": "Hotel located in Gisenyi town"
+          },
+          "rooms":{
+            "type": "array",
+            "description": "Array of users info",
+            "items": {
+              "$ref": "#/components/schemas/room"
             }
           }
-        },
-        "400": {
-          "description": "Bad request"
-        },
-        "401": {
-          "description": "Access denied"
         }
       }
     }

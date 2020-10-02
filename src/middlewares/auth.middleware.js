@@ -1,5 +1,5 @@
 import { decode } from '../utils/jwtFunctions';
-import { User, AccessToken } from '../database/models';
+import { User, AccessToken, UserRole } from '../database/models';
 
 class AuthMiddleware {
   static async checkToken(req, res, next) {
@@ -40,6 +40,14 @@ class AuthMiddleware {
         message: res.__(err)
       });
     }
+  }
+
+  static async checkAdmin(req, res, next) {
+    const role = await UserRole.findOne({ where: { id: req.user.roleId } });
+    if (role.name !== 'SUPER_ADMIN' && role.name !== 'TRAVEL_ADMIN') {
+      return res.status(401).send({ message: res.__('Unauthorized request') });
+    }
+    return next();
   }
 }
 
