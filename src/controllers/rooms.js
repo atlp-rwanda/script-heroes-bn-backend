@@ -27,6 +27,7 @@ export default {
         .json({ message: res.__('No rooms created yet in this accomodation') });
     }
     return res.status(200).json(rooms);
+
   },
   deleteRooms: async (req, res) => {
     const { id } = req.body;
