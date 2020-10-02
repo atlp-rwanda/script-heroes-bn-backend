@@ -2,14 +2,12 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable class-methods-use-this */
 import bcrypt from 'bcryptjs';
-import { User } from '../database/models';
+import { User, AccessToken } from '../database/models';
 import { encode } from '../utils/jwtFunctions';
 
 class UserController {
   static async signupUser(req, res) {
-    const {
-      firstName, lastName, email, phoneNumber, password
-    } = req.body;
+    const { firstName, lastName, email, phoneNumber, password } = req.body;
 
     const emailExist = await User.findOne({
       where: { email: req.body.email }
@@ -51,9 +49,20 @@ class UserController {
       lastName: userAccount.lastName,
       email: userAccount.email
     });
+
+    const saveToken = await AccessToken.create({ token });
+
     return res.status(200).send({
       message: res.__('Your are successfully loged in'),
-      token
+      token: saveToken.token
+    });
+  }
+
+  static async userLogout(req, res) {
+    const { 'x-auth-token': token } = req.headers;
+    await AccessToken.destroy({ where: { token } });
+    res.status(200).json({
+      msg: res.__('Loggout success')
     });
   }
 }

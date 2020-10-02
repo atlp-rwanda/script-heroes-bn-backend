@@ -3,5 +3,11 @@
   "Successfully registered": "Enregistré avec succès",
   "Email already exists": "l'email existe déjà",
   "Email or password is incorrect": "E-mail ou mot de passe est incorrecte",
-  "Your are successfully loged in": "Vous êtes connecté avec succès"
+  "Your are successfully loged in": "Vous êtes connecté avec succès",
+  "Password must be at least 5 characters including 4 letters and numbers": "Le mot de passe doit comporter au moins 5 caractères, dont 4 lettres et chiffres",
+  "Login success": "Connexion réussie",
+  "Loggout success": "Déconnexion réussie",
+  "Token no longer valid": "Le jeton n'est plus valide",
+  "Please Login": "Veuillez vous connecter",
+  "User not found": "Utilisateur non trouvé"
 }
