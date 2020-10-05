@@ -11,7 +11,7 @@
     "start": "npm run build && node dist/index",
     "dev": "nodemon --exec babel-node src/index.js",
     "build": "babel src --out-dir dist",
-    "test": "nyc --reporter=html --reporter=text mocha -r @babel/register test/* --timeout 10000 --exit",
+    "test": "nyc --reporter=html --reporter=text mocha  --timeout 60000 -r @babel/register test/*  --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "migration:undo": "sequelize db:migrate:undo:all",
     "migrate": "sequelize db:migrate",

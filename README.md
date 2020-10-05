@@ -134,6 +134,19 @@ linemanager: DataTypes.INTEGER
 }
 ```
 
+### Return Trip model
+
+```json
+{
+  "origin": 1,
+  "destination": 3,
+  "from": "2020-10-10",
+  "till": "2020-10-15",
+  "travelReasons": "vacation",
+  "accomodationId": 1
+}
+```
+
 ### Endpoints
 
 - Hosted url: https://script-heroes-bn-backend-stgng.herokuapp.com/
@@ -144,3 +157,4 @@ linemanager: DataTypes.INTEGER
 - Update Profile: `/api/profile/update`
 - Accomodations: `/api/accomodations`
 - Forgot Password: `/api/forgotPassword`
+- Trip With Return Date: `/api/trip/return-trip`

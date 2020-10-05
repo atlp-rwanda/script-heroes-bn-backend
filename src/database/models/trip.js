@@ -11,27 +11,42 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Trip.belongsTo(models.Request, {
         foreignKey: 'requestId',
-        as: 'request'
+        onDelete: 'CASCADE'
       });
 
-      Trip.hasOne(models.Location, {
-        foreignKey: 'id',
-        as: 'originId'
+      Trip.belongsTo(models.Location, {
+        foreignKey: 'origin',
+        onDelete: 'CASCADE'
       });
 
-      Trip.hasOne(models.Location, {
-        foreignKey: 'id',
-        as: 'destinationId'
+      Trip.belongsTo(models.Location, {
+        foreignKey: 'destination',
+        onDelete: 'CASCADE'
+      });
+      Trip.belongsTo(models.Accomodation, {
+        foreignKey: 'accomodationId',
+        onDelete: 'CASCADE'
       });
     }
   }
   Trip.init(
     {
-      origin: DataTypes.INTEGER,
-      destination: DataTypes.INTEGER,
+      origin: {
+        type: DataTypes.INTEGER,
+        references: { model: 'Location', key: 'id' }
+      },
+      destination: {
+        type: DataTypes.INTEGER,
+        references: { model: 'Location', key: 'id' }
+      },
       from: DataTypes.STRING,
       till: DataTypes.STRING,
-      requestId: DataTypes.INTEGER
+      requestId: DataTypes.INTEGER,
+      accomodationId: {
+        type: DataTypes.INTEGER,
+        references: { model: 'Accomodation', key: 'id' }
+      },
+      travelReasons: DataTypes.STRING
     },
     {
       sequelize,
