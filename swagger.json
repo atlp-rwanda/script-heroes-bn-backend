@@ -207,6 +207,311 @@
           }
         },
         "description": "Model containing user info"
+      },
+      "Profile": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 4
+          },
+          "first name": {
+            "type": "string",
+            "example": "JOHN"
+          },
+          "last name": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@test.com"
+          },
+          "gender": {
+            "type": "string",
+            "example": "Male"
+          },
+          "birthdate": {
+            "type": "date",
+            "example": "1856-02-09"
+          },
+          "language": {
+            "type": "string",
+            "example": "Kinyarwanda"
+          },
+          "currency": {
+            "type": "string",
+            "example": "US$"
+          },
+          "country": {
+            "type": "string",
+            "example": "Rwanda"
+          },
+          "role": {
+            "type": "string",
+            "example": "Software Developer"
+          },
+          "department": {
+            "type": "string",
+            "example": "IT"
+          },
+          "linemanager": {
+            "type": "string",
+            "example": "JANE Doe"
+          }
+        },
+        "description": "Model containing user profile info"
+      },
+      "Updated Profile": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 4
+          },
+          "first name": {
+            "type": "string",
+            "example": "JOHN"
+          },
+          "last name": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "gender": {
+            "type": "string",
+            "example": "Male"
+          },
+          "birthdate": {
+            "type": "date",
+            "example": "1856-02-09"
+          },
+          "language": {
+            "type": "string",
+            "example": "English"
+          },
+          "currency": {
+            "type": "string",
+            "example": "US$"
+          },
+          "country": {
+            "type": "string",
+            "example": "Rwanda"
+          },
+          "role": {
+            "type": "string",
+            "example": "Software Developer"
+          },
+          "department": {
+            "type": "string",
+            "example": "IT"
+          },
+          "linemanager": {
+            "type": "string",
+            "example": "JANE Doe"
+          }
+        },
+        "description": "Model containing user profile info"
+      }
+    }
+  },
+  "/api/profile": {
+    "get": {
+      "description": "Obtain profile information of users from the database",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "x-auth-token",
+          "description": "a token for authentication",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "responses": {
+          "200": {
+            "description": "Successful  pull of user updated info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Updated Profile"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User with provided email not found"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      }
+    }
+  },
+  "/api/profile/update": {
+    "put": {
+      "description": "Update profile information of logged in user",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "x-auth-token",
+          "description": "a token for authentication",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "first name": {
+                  "type": "string",
+                  "example": "JOHN"
+                },
+                "last name": {
+                  "type": "string",
+                  "example": "Doe"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "Male"
+                },
+                "birthdate": {
+                  "type": "date",
+                  "example": "1856-02-09"
+                },
+                "language": {
+                  "type": "string",
+                  "example": "English"
+                },
+                "currency": {
+                  "type": "string",
+                  "example": "US$"
+                },
+                "country": {
+                  "type": "string",
+                  "example": "Rwanda"
+                },
+                "role": {
+                  "type": "string",
+                  "example": "Software Developer"
+                },
+                "department": {
+                  "type": "string",
+                  "example": "IT"
+                },
+                "linemanager": {
+                  "type": "string",
+                  "example": "JANE Doe"
+                }
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "201": {
+          "description": "Successfuly updated user profile info",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Updated Profile"
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "User with profided email not found"
+        },
+        "400": {
+          "description": "Bad request"
+        },
+        "500": {
+          "description": "Server error"
+        },
+        "401": {
+          "description": "Access denied"
+        }
+      }
+    }
+  },
+  "/api/profile/complete": {
+    "put": {
+      "description": "complete profile information of logged in user after succesful registration",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "x-auth-token",
+          "description": "a token for authentication",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "gender": {
+                  "type": "string",
+                  "example": "Male"
+                },
+                "birthdate": {
+                  "type": "date",
+                  "example": "1856-02-09"
+                },
+                "language": {
+                  "type": "string",
+                  "example": "Kinyarwanda"
+                },
+                "currency": {
+                  "type": "string",
+                  "example": "US$"
+                },
+                "country": {
+                  "type": "string",
+                  "example": "Rwanda"
+                },
+                "role": {
+                  "type": "string",
+                  "example": "Software Developer"
+                },
+                "department": {
+                  "type": "string",
+                  "example": "IT"
+                },
+                "linemanager": {
+                  "type": "string",
+                  "example": "JANE Doe"
+                }
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "201": {
+          "description": "Successfuly completed user profile info",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Profile"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Bad request"
+        },
+        "401": {
+          "description": "Access denied"
+        }
       }
     }
   }

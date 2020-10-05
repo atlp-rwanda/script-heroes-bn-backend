@@ -52,8 +52,64 @@ Note: If you make changes that uses environmental variables make sure to add tho
 }
 ```
 
+## Profile Page Settings Endpoints
+
+### Complete Profile Model
+
+```
+{
+gender: DataTypes.STRING,
+birthdate: DataTypes.DATE,
+language: DataTypes.STRING,
+currency: DataTypes.STRING,
+country: DataTypes.STRING,
+department: DataTypes.STRING,
+linemanager: DataTypes.INTEGER
+}
+
+```
+
+### Update Profile Model
+
+```
+{
+firstName: DataTypes.STRING,
+lastName: DataTypes.STRING,
+phoneNumber: DataTypes.STRING,
+gender: DataTypes.STRING,
+birthdate: DataTypes.DATE,
+language: DataTypes.STRING,
+currency: DataTypes.STRING,
+country: DataTypes.STRING,
+department: DataTypes.STRING,
+linemanager: DataTypes.INTEGER
+}
+
+```
+
+### Profile Schema
+
+```json
+{
+  "firstName": "name",
+  "lastName": "lastName",
+  "email": "example1@email.com",
+  "phoneNumber": "12345678",
+  "gender": "Male",
+  "birthdate": "1978-05-04T00:00:00.000Z",
+  "language": "Kinyarwanda",
+  "currency": "US$",
+  "country": "Rwanda",
+  "department": "IT",
+  "linemanager": "JOHN Doe"
+}
+```
+
 ### Endpoints
 
 - Hosted url: https://script-heroes-bn-backend-stgng.herokuapp.com/
 - Signup: `/api/auth/signup`
 - Login: `/api/auth/login`
+- Complete Profile: `/api/profile/complete`
+- Display Profile: `/api/profile`
+- Update Profile: `/api/profile/update`
