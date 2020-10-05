@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       Request.hasMany(models.Trip, {
         foreignKey: 'requestId'
       });
+      Request.belongsTo(models.RequestType, {
+        foreignKey: 'type',
+      });
     }
   }
   Request.init(
