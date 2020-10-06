@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import UserController from '../../controllers/emailAuth';
+import emailVerification from '../../controllers/emailVerification';
 import asyncHandler from '../../middlewares/asynchandler';
 import {
   signupValidations,
@@ -16,6 +17,7 @@ userRouter
     '/logout',
     AuthMiddleware.checkToken,
     asyncHandler(UserController.userLogout)
-  );
+  )
+  .get('/verify/:token', asyncHandler(emailVerification));
 
 export default userRouter;

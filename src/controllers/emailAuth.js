@@ -2,8 +2,10 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable class-methods-use-this */
 import bcrypt from 'bcryptjs';
+import sgMail from '@sendgrid/mail';
 import { User, AccessToken } from '../database/models';
 import { encode } from '../utils/jwtFunctions';
+import autoMsg from '../helpers/autoemail';
 
 class UserController {
   static async signupUser(req, res) {
@@ -18,14 +20,26 @@ class UserController {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = await User.create({
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      password: hashedPassword
-    });
-    res.status(201).json({ message: res.__('Successfully registered') });
+    const token = encode({ email });
+    const url = `${process.env.BACK_END_URL}/${token}`;
+    const msg = autoMsg({ email, firstName, url });
+    sgMail
+      .send(msg)
+      .then(async () => {
+        const newUser = await User.create({
+          firstName,
+          lastName,
+          email,
+          phoneNumber,
+          password: hashedPassword
+        });
+        res.status(201).json({ message: res.__('Successfully registered') });
+      })
+      .catch((error) => {
+        res
+          .status(500)
+          .send({ message: res.__('Something went wrong') });
+      });
   }
 
   static async userLogin(req, res) {
@@ -42,7 +56,11 @@ class UserController {
         .status(404)
         .send({ message: res.__('Email or Password is incorrect') });
     }
-
+    if (!userAccount.isVerified) {
+      return res
+        .status(401)
+        .send({ message: res.__('Your email is not verified!!') });
+    }
     const token = encode({
       id: userAccount.id,
       firstName: userAccount.firstName,

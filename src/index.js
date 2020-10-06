@@ -6,12 +6,15 @@ import errorhandler from 'errorhandler';
 import swaggerUi from 'swagger-ui-express';
 import cron from 'node-cron';
 import { Op } from 'sequelize';
+import sgMail from '@sendgrid/mail';
 import swaggerDocument from '../swagger.json';
-import db, { AccessToken, sequelize } from './database/models/index';
+import db, { AccessToken } from './database/models/index';
 import i18n from './utils/internationalization/i18n';
 import routes from './routes';
 
 require('dotenv').config();
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const isProduction = process.env.NODE_ENV === 'production';
 

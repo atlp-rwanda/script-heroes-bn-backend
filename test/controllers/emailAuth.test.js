@@ -2,12 +2,13 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../src/index';
 import { User } from '../../src/database/models';
+import { encode } from '../../src/utils/jwtFunctions';
 
 chai.should();
 chai.use(chaiHttp);
 
 let token;
-
+const verifyToken = encode({ email: 'mail@mail.com' });
 describe('Auth', () => {
   before(async () => {
     await User.destroy({
@@ -92,7 +93,18 @@ describe('Auth', () => {
         done();
       });
   });
-
+  it('Should verify email before loggging in', (done) => {
+    chai
+      .request(app)
+      .get(`/api/auth/verify/${verifyToken}`)
+      .set({ 'Accept-Language': 'en' })
+      .end((err, res) => {
+        if (err) done(err);
+        token = res.body.token;
+        res.should.have.status(200);
+        done();
+      });
+  });
   it('Should return 200 if login secceed', (done) => {
     chai
       .request(app)
