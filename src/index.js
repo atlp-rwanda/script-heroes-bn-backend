@@ -11,6 +11,8 @@ import swaggerDocument from '../swagger.json';
 import db, { AccessToken } from './database/models/index';
 import i18n from './utils/internationalization/i18n';
 import routes from './routes';
+import googleRouter from './routes/googleRoutes';
+import facebookRoute from './routes/facebookRoutes';
 
 require('dotenv').config();
 
@@ -36,6 +38,9 @@ app.get('/api-docs', swaggerUi.setup(swaggerDocument));
 if (!isProduction) {
   app.use(errorhandler());
 }
+
+app.use('/', googleRouter);
+app.use('/', facebookRoute);
 
 app.get('/', (req, res, next) => {
   res.status(200).send({ message: res.__('Welcome to barefoot nomad') });
