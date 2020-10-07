@@ -36,9 +36,7 @@ class UserController {
         res.status(201).json({ message: res.__('Successfully registered') });
       })
       .catch((error) => {
-        res
-          .status(500)
-          .send({ message: res.__('Something went wrong') });
+        res.status(500).send({ message: res.__('Something went wrong') });
       });
   }
 

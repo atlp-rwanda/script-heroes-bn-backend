@@ -7,10 +7,11 @@
     "node": "10.19.0"
   },
   "scripts": {
+    "prestart": "npm run migrate",
     "start": "npm run build && node dist/index",
     "dev": "nodemon --exec babel-node src/index.js",
     "build": "babel src --out-dir dist",
-    "test": "npm run pretest && nyc --testTimeout=30000 --reporter=html --reporter=text mocha -r @babel/register test/* --exit",
+    "test": "npm run pretest && nyc --reporter=html --reporter=text mocha --timeout 150000 -r @babel/register test/* --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "migration:undo": "sequelize db:migrate:undo:all",
     "migrate": "sequelize db:migrate",
