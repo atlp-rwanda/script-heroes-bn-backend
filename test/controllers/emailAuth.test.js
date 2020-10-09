@@ -12,7 +12,7 @@ const verifyToken = encode({ email: 'mail@mail.com' });
 describe('Auth', () => {
   before(async () => {
     await User.destroy({
-      truncate: true
+      truncate: { cascade: true }
     });
   });
 
