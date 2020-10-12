@@ -44,26 +44,22 @@ class UserController {
     const { email, password } = req.body;
     const userAccount = await User.findOne({ where: { email } });
     if (!userAccount) {
-      return res
-        .status(404)
-        .send({ message: res.__('Email or Password is incorrect') });
+      return res.status(404).send({ message: res.__('Email or Password is incorrect') });
     }
     const validPass = await bcrypt.compare(password, userAccount.password);
     if (!validPass) {
-      return res
-        .status(404)
-        .send({ message: res.__('Email or Password is incorrect') });
+      return res.status(404).send({ message: res.__('Email or Password is incorrect') });
     }
     if (!userAccount.isVerified) {
-      return res
-        .status(401)
-        .send({ message: res.__('Your email is not verified!!') });
+      return res.status(401).send({ message: res.__('Your email is not verified!!') });
     }
+    // check user has roleId
     const token = encode({
       id: userAccount.id,
       firstName: userAccount.firstName,
       lastName: userAccount.lastName,
-      email: userAccount.email
+      email: userAccount.email,
+      roleId: userAccount.roleId
     });
 
     const saveToken = await AccessToken.create({ token });
@@ -80,6 +76,12 @@ class UserController {
     res.status(200).json({
       msg: res.__('Loggout success')
     });
+  }
+
+  static async hashPassword(adminPassword) {
+    const salt = await bcrypt.genSalt(10);
+    const hashedAdminPassword = await bcrypt.hash(adminPassword, salt);
+    return hashedAdminPassword;
   }
 }
 export default UserController;
