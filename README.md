@@ -105,6 +105,18 @@ linemanager: DataTypes.INTEGER
 }
 ```
 
+### Accommodation model
+
+```json
+{
+  "facilityName": "facility Name",
+  "locationId": 1,
+  "description": "Full description of the facility",
+  "roomType": "room type",
+  "photoUrl": "Url for image"
+}
+```
+
 ### Endpoints
 
 - Hosted url: https://script-heroes-bn-backend-stgng.herokuapp.com/
@@ -113,3 +125,4 @@ linemanager: DataTypes.INTEGER
 - Complete Profile: `/api/profile/complete`
 - Display Profile: `/api/profile`
 - Update Profile: `/api/profile/update`
+- Accomodations: `/api/accomodations`
