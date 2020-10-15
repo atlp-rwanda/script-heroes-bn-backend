@@ -106,7 +106,7 @@ describe('Oneway API Routes', () => {
         res.body.should.have.property('message');
         res.body.should.have.property('trip');
         res.body.message.should.equal('Request successfully sent');
-        tripId= res.body.trip.id;
+        tripId = res.body.trip.id;
         done();
       });
   });
@@ -131,7 +131,6 @@ describe('Oneway API Routes', () => {
       .get('/api/trips/oneway')
       .set({ 'Accept-Language': 'en', 'x-auth-token': token2 })
       .end((err, res) => {
-        console.log(err);
         if (err) done(err);
         res.should.have.status(200);
         res.body.should.be.a('object');

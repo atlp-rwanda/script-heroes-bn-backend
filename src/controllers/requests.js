@@ -1,7 +1,18 @@
 /* eslint-disable require-jsdoc */
 import sgMail from '@sendgrid/mail';
+import customMessages from '../utils/customMessages';
+import updateTemplate from '../helpers/updateRequestEmail';
 import template from '../helpers/newRequestEmail';
+
 import { Trip, Request, RequestType, User } from '../database/models';
+
+const {
+  notYourRequest,
+  notExistRequest,
+  emptyUpdate,
+  notOpenRequest,
+  requestUpdated
+} = customMessages;
 
 class RequestsController {
   static async getRequestTypes(req, res) {
@@ -37,10 +48,7 @@ class RequestsController {
     }
 
     const email = template({ user, lineManager });
-    if (
-      process.env.NODE_ENV === 'production' ||
-      process.env.NODE_ENV === 'development'
-    ) {
+    if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
       await sgMail.send(email);
     }
 
@@ -92,6 +100,57 @@ class RequestsController {
       message: res.__('Requests fetched successfully'),
       requests
     });
+  }
+
+  static async updateOpenRequests(req, res) {
+    const { user } = req;
+
+    if (!req.body) {
+      return res.status(400).json({
+        error: res.__(emptyUpdate)
+      });
+    }
+
+    const request = await Request.findOne({
+      where: { id: req.params.id }
+    });
+
+    if (!request) {
+      return res.status(400).json({
+        error: res.__(notExistRequest)
+      });
+    }
+
+    if (request.userId !== user.id) {
+      return res.status(401).json({
+        error: res.__(notYourRequest)
+      });
+    }
+
+    if (request.status !== 'pending') {
+      return res.status(400).json({
+        error: res.__(notOpenRequest)
+      });
+    }
+
+    const trip = await Trip.findOne({
+      where: { requestId: request.id }
+    });
+    const updatedTrip = await trip.update(req.body);
+    const lineManager = await User.findOne({ where: { id: user.linemanager } });
+
+    if (!lineManager) {
+      return res.status(404).json({
+        error: res.__('Can not find your line manager')
+      });
+    }
+
+    const email = updateTemplate({ user, lineManager });
+    if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
+      await sgMail.send(email);
+    }
+
+    res.status(201).json({ request, trip: updatedTrip, msg: res.__(requestUpdated) });
   }
 }
 export default RequestsController;

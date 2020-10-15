@@ -191,6 +191,25 @@ describe('Requests', () => {
       });
   });
 
+  it('should update a request still open', (done) => {
+    chai
+      .request(app)
+      .patch(`/api/trips/open/${requestId}`)
+      .set({ 'Accept-Language': 'en', 'x-auth-token': token })
+      .send({
+        origin: 2,
+        destination: 1,
+        from: '2020-12-12',
+        till: '2020-12-12'
+      })
+      .end((err, res) => {
+        if (err) done(err);
+        res.should.have.status(201);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+
   it('should delete a request', (done) => {
     chai
       .request(app)
