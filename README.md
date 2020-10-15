@@ -182,3 +182,5 @@ linemanager: DataTypes.INTEGER
 - Host Accommodations: `/api/host/accomodations`
 - Accomodation like Reaction: `/api/accomodations/like`
 - Accomodation unlike Reaction: `/api/accomodations/unlike`
+- Get All requests as a manager: `/api/requests`
+- Make a decision on a request as a manager: `/api/requests/:id/:decision`

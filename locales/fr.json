@@ -163,5 +163,10 @@
   "Services should be of type string": "Les services doivent être de type chaîne",
   "Please, provide meaningful services": "Veuillez fournir des services utiles",
   "Amenities should be of type string": "Les équipements doivent être de type chaîne",
-  "Please, provide meaningful amenities": "Veuillez fournir des équipements utiles"
+  "Please, provide meaningful amenities": "Veuillez fournir des équipements utiles",
+  "Unauthorized request": "Demande non autorisée",
+  "Request approved successfully": "Demande approuvée avec succès",
+  "Request declined successfully": "Demande refusée avec succès",
+  "Request doesn't exist": "La demande n'existe pas",
+  "Decision must be one of approve or decline": "La décision doit être d'approuver ou de refuser"
 }

@@ -42,7 +42,8 @@ class returnTripController {
     const getRequest = {
       status: 'pending',
       userId: req.user.id,
-      type: 2
+      type: 2,
+      linemanager: req.user.linemanager
     };
 
     const lineManager = await User.findOne({
@@ -99,7 +100,8 @@ class returnTripController {
       till,
       travelReasons,
       accomodationId: getAccomodation.id,
-      requestId: request.id
+      requestId: request.id,
+      linemanager: req.user.linemanager
     };
 
     await Trip.create(newTrip);
@@ -157,7 +159,8 @@ class returnTripController {
       accomodationId: getAccomodation
         ? getAccomodation.id
         : trip.accomodationId,
-      requestId: trip.requestId
+      requestId: trip.requestId,
+      linemanager: req.user.linemanager
     };
 
     const newTrip = await Trip.update(updtTrip, {
@@ -172,4 +175,5 @@ class returnTripController {
     });
   }
 }
+
 export default returnTripController;

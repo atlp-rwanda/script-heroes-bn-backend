@@ -47,7 +47,7 @@
   "Location added successfully": "ahantu hongewemo neza",
   "Location updated successfully": "ahantu hahinduwe neza",
   "Request deleted successfully": "ubusabe bwasibwe neza",
-  "Request id must be a number": "inomero y' ubusabe igomba kuba ari umubare",
+  "Request id must be a number": "inomero y'ubusabe igomba kuba ari umubare",
   "Location id must be a number": "inomero y' ahantu igomba kuba umubare",
   "Request types fetched successfully": "ubwoko bw' ubusabe bwazanywe neza",
   "Welcome to barefoot nomad": "Murakaza neza kuri barefoot nomad",
@@ -171,5 +171,10 @@
   "Services should be of type string": "Injizamo ibyo mukora",
   "Please, provide meaningful services": "Injizamo ibyo mukora",
   "Amenities should be of type string": "Injizamo uburyo bwo kwidagadura mufite",
-  "Please, provide meaningful amenities": "Injizamo uburyo bwo kwidagadura mufite"
+  "Please, provide meaningful amenities": "Injizamo uburyo bwo kwidagadura mufite",
+  "Unauthorized request": "Ntabwo wemerewe ubu busabe",
+  "Request doesn't exist": "Ubusabe ntabwo bubonetse",
+  "Request approved successfully": "Kwemera ubusabe byagenze neza",
+  "Request declined successfully": "Kwanga ubusabe byagenze neza",
+  "Decision must be one of approve or decline": "Icyemezo kigomba kuba ari kwemera cyangwa kwanga"
 }

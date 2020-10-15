@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Request.belongsTo(models.User, {
         foreignKey: 'userId',
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
+        onUpdate: ' CASCADE'
       });
       Request.belongsTo(models.RequestType, {
         foreignKey: 'type',
@@ -21,8 +22,9 @@ module.exports = (sequelize, DataTypes) => {
       Request.hasMany(models.Trip, {
         foreignKey: 'requestId'
       });
+
       Request.belongsTo(models.RequestType, {
-        foreignKey: 'type',
+        foreignKey: 'type'
       });
     }
   }
@@ -30,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       type: DataTypes.INTEGER,
       userId: DataTypes.INTEGER,
-      status: DataTypes.STRING
+      status: DataTypes.STRING,
+      linemanager: DataTypes.INTEGER
     },
     {
       sequelize,

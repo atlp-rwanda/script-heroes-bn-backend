@@ -37,7 +37,8 @@ class RequestsController {
     const request = await Request.create({
       userId: user.id,
       status: 'pending',
-      type: 3
+      type: 3,
+      linemanager: user.linemanager
     });
     const lineManager = await User.findOne({ where: { id: user.linemanager } });
 
