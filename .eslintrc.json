@@ -29,6 +29,7 @@
     "import/no-unresolved": [2, { "commonjs": true }],
     "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
     "valid-jsdoc": 0,
-    "require-jsdoc": 0
+    "require-jsdoc": 0,
+    "indent": ["error", 2]
   }
 }
