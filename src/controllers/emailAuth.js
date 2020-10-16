@@ -1,6 +1,4 @@
-/* eslint-disable no-undef */
 /* eslint-disable require-jsdoc */
-/* eslint-disable class-methods-use-this */
 import bcrypt from 'bcryptjs';
 import sgMail from '@sendgrid/mail';
 import { User, AccessToken } from '../database/models';
@@ -23,35 +21,47 @@ class UserController {
     const token = encode({ email });
     const url = `${process.env.BACK_END_URL}/${token}`;
     const msg = autoMsg({ email, firstName, url });
-    sgMail
-      .send(msg)
-      .then(async () => {
-        const newUser = await User.create({
-          firstName,
-          lastName,
-          email,
-          phoneNumber,
-          password: hashedPassword
-        });
-        res.status(201).json({ message: res.__('Successfully registered') });
-      })
-      .catch((error) => {
-        res.status(500).send({ message: res.__('Something went wrong') });
+
+    try {
+      if (process.env.NODE_ENV === 'production') {
+        await sgMail.send(msg);
+      }
+      await User.create({
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        password: hashedPassword
       });
+
+      return res
+        .status(201)
+        .json({ message: res.__('Successfully registered') });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: res.__('Something went wrong'), error });
+    }
   }
 
   static async userLogin(req, res) {
     const { email, password } = req.body;
     const userAccount = await User.findOne({ where: { email } });
     if (!userAccount) {
-      return res.status(404).send({ message: res.__('Email or Password is incorrect') });
+      return res
+        .status(404)
+        .json({ message: res.__('Email or Password is incorrect') });
     }
     const validPass = await bcrypt.compare(password, userAccount.password);
     if (!validPass) {
-      return res.status(404).send({ message: res.__('Email or Password is incorrect') });
+      return res
+        .status(404)
+        .json({ message: res.__('Email or Password is incorrect') });
     }
     if (!userAccount.isVerified) {
-      return res.status(401).send({ message: res.__('Your email is not verified!!') });
+      return res
+        .status(401)
+        .json({ message: res.__('Your email is not verified!!') });
     }
     // check user has roleId
     const token = encode({
@@ -64,7 +74,7 @@ class UserController {
 
     const saveToken = await AccessToken.create({ token });
 
-    return res.status(200).send({
+    return res.status(200).json({
       message: res.__('Your are successfully loged in'),
       token: saveToken.token
     });

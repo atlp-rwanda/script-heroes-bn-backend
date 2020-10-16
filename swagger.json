@@ -10,40 +10,33 @@
       "url": "/"
     }
   ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Users routes"
+    },
+    {
+      "name": "Requests",
+      "description": "requests routes"
+    },
+    {},
+    {
+      "name": "Profile",
+      "description": "profile routes"
+    },
+    {
+      "name": "Accomodations",
+      "description": "accomodation routes"
+    },
+    {
+      "name": "Locations",
+      "description": "location routes"
+    }
+  ],
   "paths": {
-    "/api/signup": {
-      "get": {
-        "description": "Obtain information about users from database",
-        "parameters": [
-          {
-            "name": "bodyLimit",
-            "in": "query",
-            "description": "The amount of users returned",
-            "required": false,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "maximum": 50,
-              "minimum": 10,
-              "type": "integer",
-              "example": 35
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful  pull of users info",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Users"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/api/auth/signup": {
       "post": {
+        "tags": ["Auth"],
         "description": "Creates a new user in database",
         "requestBody": {
           "content": {
@@ -67,44 +60,9 @@
         }
       }
     },
-    "/users/{id}": {
-      "get": {
-        "description": "Obtain info a specific user",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The ID of a user",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "integer",
-              "example": 34
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/auth/login": {
       "post": {
+        "tags": ["Auth"],
         "description": "Login to barefoot nomad",
         "requestBody": {
           "content": {
@@ -151,6 +109,7 @@
     },
     "/api/auth/logout": {
       "post": {
+        "tags": ["Auth"],
         "description": "Logout to barefoot nomad",
         "parameters": [
           {
@@ -183,6 +142,7 @@
     },
     "/api/profile": {
       "get": {
+        "tags": ["Profile"],
         "description": "Obtain profile information of users from the database",
         "parameters": [
           {
@@ -220,6 +180,7 @@
     },
     "/api/profile/update": {
       "put": {
+        "tags": ["Profile"],
         "description": "Update profile information of logged in user",
         "parameters": [
           {
@@ -310,6 +271,7 @@
     },
     "/api/profile/complete": {
       "put": {
+        "tags": ["Profile"],
         "description": "complete profile information of logged in user after succesful registration",
         "parameters": [
           {
@@ -384,8 +346,9 @@
         }
       }
     },
-    "api/accommodations":{
+    "api/accommodations": {
       "post": {
+        "tags": ["Accomodations"],
         "description": "Creating an accommodation",
         "parameters": [
           {
@@ -396,17 +359,17 @@
             "type": "string"
           }
         ],
-        "requestBody":{
-          "content":{
+        "requestBody": {
+          "content": {
             "application/json": {
-              "schema":{
+              "schema": {
                 "type": "object",
-                "properties":{
-                  "facilityName":{
+                "properties": {
+                  "facilityName": {
                     "type": "string",
                     "example": "Peace view hotel"
                   },
-                  "description":{
+                  "description": {
                     "type": "string",
                     "example": "Hotel located in Gisenyi town"
                   },
@@ -414,11 +377,11 @@
                     "type": "integer",
                     "example": 4
                   },
-                  "roomType":{
+                  "roomType": {
                     "type": "string",
                     "example": "Classic"
                   },
-                  "photoUrl":{
+                  "photoUrl": {
                     "type": "string",
                     "example": "http://photourl"
                   }
@@ -426,7 +389,7 @@
               }
             }
           },
-        "required": true
+          "required": true
         },
         "responses": {
           "201": {
@@ -446,8 +409,9 @@
             "description": "Access denied"
           }
         }
-      }, 
+      },
       "get": {
+        "tags": ["Accomodations"],
         "description": "Getting an accommodation",
         "parameters": [
           {
@@ -476,10 +440,11 @@
             "description": "Access denied"
           }
         }
-      } 
+      }
     },
-    "api/accommodations/{id}":{
+    "api/accommodations/{id}": {
       "put": {
+        "tags": ["Accomodations"],
         "description": "Updating an accommodation",
         "parameters": [
           {
@@ -490,17 +455,17 @@
             "type": "string"
           }
         ],
-        "requestBody":{
-          "content":{
+        "requestBody": {
+          "content": {
             "application/json": {
-              "schema":{
+              "schema": {
                 "type": "object",
-                "properties":{
-                  "facilityName":{
+                "properties": {
+                  "facilityName": {
                     "type": "string",
                     "example": "Peace view hotel"
                   },
-                  "description":{
+                  "description": {
                     "type": "string",
                     "example": "Hotel located in Gisenyi town"
                   },
@@ -508,7 +473,7 @@
                     "type": "integer",
                     "example": 4
                   },
-                  "photoUrl":{
+                  "photoUrl": {
                     "type": "string",
                     "example": "http://photourl"
                   }
@@ -516,7 +481,7 @@
               }
             }
           },
-        "required": true
+          "required": true
         },
         "responses": {
           "201": {
@@ -538,6 +503,7 @@
         }
       },
       "get": {
+        "tags": ["Accomodations"],
         "description": "Getting a single accommodation",
         "parameters": [
           {
@@ -568,6 +534,7 @@
         }
       },
       "delete": {
+        "tags": ["Accomodations"],
         "description": "Deleting an accommodation",
         "parameters": [
           {
@@ -584,10 +551,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type":"object",
+                  "type": "object",
                   "properties": {
-                    "message":{
-                      "type":"string",
+                    "message": {
+                      "type": "string",
                       "example": "Accommodation deleted successfully"
                     }
                   }
@@ -602,10 +569,11 @@
             "description": "Access denied"
           }
         }
-      } 
+      }
     },
-    "api/accommodations/{id}/rooms":{
+    "api/accommodations/{id}/rooms": {
       "post": {
+        "tags": ["Accomodations"],
         "description": "Creating room in an accommodation",
         "parameters": [
           {
@@ -616,17 +584,17 @@
             "type": "string"
           }
         ],
-        "requestBody":{
-          "content":{
+        "requestBody": {
+          "content": {
             "application/json": {
-              "schema":{
+              "schema": {
                 "type": "object",
-                "properties":{
+                "properties": {
                   "accomodationId": {
                     "type": "integer",
                     "example": 4
                   },
-                  "roomType":{
+                  "roomType": {
                     "type": "string",
                     "example": "Classic"
                   }
@@ -634,7 +602,7 @@
               }
             }
           },
-        "required": true
+          "required": true
         },
         "responses": {
           "201": {
@@ -654,8 +622,9 @@
             "description": "Access denied"
           }
         }
-      }, 
+      },
       "get": {
+        "tags": ["Accomodations"],
         "description": "Getting room in an accommodation",
         "parameters": [
           {
@@ -682,6 +651,319 @@
           },
           "401": {
             "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/api/request-types": {
+      "get": {
+        "tags": ["Requests"],
+        "description": "request types",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/trips": {
+      "get": {
+        "tags": ["Requests"],
+        "description": "get all individual requests",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "400": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/api/trips/{id}": {
+      "get": {
+        "tags": ["Requests"],
+        "description": "get an individual request by id",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "a request id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "400": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Requests"],
+        "description": "delete a request by id",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "a request id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "400": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/api/trips/multi-city": {
+      "post": {
+        "tags": ["Requests"],
+        "description": "add a multi-city trip request",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authentication",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "$ref": "#/components/schemas/Trip"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "201": {
+          "description": "Successfuly created a request"
+        },
+        "400": {
+          "description": "Bad request"
+        }
+      }
+    },
+    "/api/locations": {
+      "get": {
+        "tags": ["Locations"],
+        "description": "get all locations",
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "400": {
+            "description": "bad request"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Locations"],
+        "description": "create a location",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authentication",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "$ref": "#/components/schemas/Location"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "201": {
+          "description": "success"
+        },
+        "400": {
+          "description": "bad request"
+        }
+      }
+    },
+    "/api/locations/{id}": {
+      "get": {
+        "tags": ["Locations"],
+        "description": "get a location by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "a request id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "400": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Locations"],
+        "description": "delete a location",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "a location id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "400": {
+            "description": "bad request"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Locations"],
+        "description": "update a location",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "a location id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Location"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "success"
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "404": {
+            "description": "not found"
           }
         }
       }
@@ -825,11 +1107,11 @@
             "type": "integer",
             "example": 1
           },
-          "accomodationId":{
+          "accomodationId": {
             "type": "integer",
             "example": 4
           },
-          "isBooked":{
+          "isBooked": {
             "type": "boolean",
             "example": false
           }
@@ -845,15 +1127,15 @@
             "type": "integer",
             "example": 1
           },
-          "facilityName":{
+          "facilityName": {
             "type": "string",
             "example": "Peace view hotel"
           },
-          "description":{
+          "description": {
             "type": "string",
             "example": "Hotel located in Gisenyi town"
           },
-          "rooms":{
+          "rooms": {
             "type": "array",
             "description": "Array of users info",
             "items": {
@@ -861,6 +1143,34 @@
             }
           }
         }
+      },
+      "Trip": {
+        "properties": {
+          "origin": {
+            "type": "integer"
+          },
+          "destination": {
+            "type": "integer"
+          },
+          "from": {
+            "type": "string"
+          },
+          "till": {
+            "type": "string"
+          }
+        },
+        "description": "Trip Model"
+      },
+      "Location": {
+        "properties": {
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        },
+        "description": "Location Model"
       }
     }
   }

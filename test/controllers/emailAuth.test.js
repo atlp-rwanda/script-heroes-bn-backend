@@ -10,12 +10,6 @@ chai.use(chaiHttp);
 let token;
 const verifyToken = encode({ email: 'mail@mail.com' });
 describe('Auth', () => {
-  before(async () => {
-    await User.destroy({
-      truncate: { cascade: true }
-    });
-  });
-
   it('should return 201 if user is created successfully', (done) => {
     const user = {
       firstName: 'First',
@@ -100,7 +94,6 @@ describe('Auth', () => {
       .set({ 'Accept-Language': 'en' })
       .end((err, res) => {
         if (err) done(err);
-        token = res.body.token;
         res.should.have.status(200);
         done();
       });
