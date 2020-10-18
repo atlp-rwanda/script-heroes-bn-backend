@@ -103,5 +103,6 @@
   "Password well reset": "Mot de passe bien change",
   "Please fill in the confirmation": "S'il vous plait confirmez votre mot de passe",
   "Confirmation is required": "Une confirmation est requise",
-  "Invalid token": "Le jeton est invalide"
+  "Invalid token": "Le jeton est invalide",
+  "jwt expired": "jwt expiré"
 }

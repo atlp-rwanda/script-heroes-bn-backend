@@ -37,7 +37,7 @@ class AuthMiddleware {
       next();
     } catch (err) {
       return res.status(400).json({
-        message: res.__(err)
+        error: res.__(err.message)
       });
     }
   }

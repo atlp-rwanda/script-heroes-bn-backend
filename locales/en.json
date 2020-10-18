@@ -151,5 +151,6 @@
   "Password well reset": "Password well reset",
   "Please fill in the confirmation": "Please fill in the confirmation",
   "Confirmation is required": "Confirmation is required",
-  "Invalid token": "Invalid token"
+  "Invalid token": "Invalid token",
+  "jwt expired": "jwt expired"
 }
