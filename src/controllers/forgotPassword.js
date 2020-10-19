@@ -1,7 +1,7 @@
-import sgMail from '@sendgrid/mail';
 import { User } from '../database/models';
 import { encode } from '../utils/jwtFunctions';
 import msgToReset from '../helpers/msgToResetPwd';
+import sendMail from '../helpers/sendMail';
 
 export default {
   async forgot(req, res) {
@@ -18,20 +18,25 @@ export default {
 
     const url = `${process.env.CLIENT_URL}`;
     const msg = msgToReset({ email, url, token });
-    sgMail
-      .send(msg)
-      .then(async () => {
-        res.status(200).json({
-          token,
-          message: res.__(
-            'A link to reset your password has been sent to your email address !!!'
-          )
-        });
-      })
-      .catch(() => {
-        res.status(400).send({
-          err: res.__('Failed in sending Reset password email !!!')
-        });
+
+    try {
+      if (
+        process.env.NODE_ENV === 'production' ||
+        process.env.NODE_ENV === 'development'
+      ) {
+        await sendMail(msg);
+      }
+
+      res.status(200).json({
+        token,
+        message: res.__(
+          'A link to reset your password has been sent to your email address !!!'
+        )
       });
+    } catch (error) {
+      res.status(400).json({
+        err: res.__('Failed in sending Reset password email !!! ', error)
+      });
+    }
   }
 };

@@ -6,7 +6,7 @@ import {
   RequestType,
   Location
 } from '../database/models';
-import sgMail from '@sendgrid/mail';
+import sendMail from '../helpers/sendMail';
 import autoMsg from '../helpers/newRequestEmail';
 
 class returnTripController {
@@ -29,6 +29,7 @@ class returnTripController {
       trips
     });
   }
+
   async createTrip(req, res) {
     const {
       origin,
@@ -63,7 +64,7 @@ class returnTripController {
       process.env.NODE_ENV === 'production' ||
       process.env.NODE_ENV === 'development'
     ) {
-      await sgMail.send(msg);
+      await sendMail(msg);
     }
 
     const request = await Request.create(getRequest);
@@ -110,6 +111,7 @@ class returnTripController {
       trip: newTrip
     });
   }
+
   async deleteTrip(req, res) {
     const trip = await Trip.findOne({ where: { id: req.params.id } });
     if (!trip) {
@@ -124,6 +126,7 @@ class returnTripController {
       msg: res.__('Successfully deleted trip')
     });
   }
+
   async updateTrip(req, res) {
     const trip = await Trip.findOne({ where: { id: req.params.id } });
     if (!trip) {

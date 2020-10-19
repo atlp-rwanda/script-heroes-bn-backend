@@ -1,6 +1,6 @@
 /* eslint-disable require-jsdoc */
 import bcrypt from 'bcryptjs';
-import sgMail from '@sendgrid/mail';
+import sendMail from '../helpers/sendMail';
 import { User, AccessToken } from '../database/models';
 import { encode } from '../utils/jwtFunctions';
 import autoMsg from '../helpers/autoemail';
@@ -27,7 +27,7 @@ class UserController {
         process.env.NODE_ENV === 'production' ||
         process.env.NODE_ENV === 'development'
       ) {
-        await sgMail.send(msg);
+        await sendMail(msg);
       }
       await User.create({
         firstName,
