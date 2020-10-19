@@ -124,5 +124,6 @@
   "Password well reset": "Guhindura ijambo ry'ibanga byagemze neza",
   "Please fill in the confirmation": "Musabwa kwemeza ijambo ry'ibanga",
   "Confirmation is required": "Emeza ijambo ry'ibanga",
-  "Invalid token": "Ijeto siyo"
+  "Invalid token": "Ijeto siyo",
+  "jwt expired": "jwt yarangiye"
 }
