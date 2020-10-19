@@ -94,5 +94,14 @@
   "Request deleted successfully": "Demande supprimée avec succès",
   "Request id must be a number": "L'identifiant de la demande doit être un nombre",
   "Location id must be a number": "L'identifiant d'emplacement doit être un nombre",
-  "Request types fetched successfully": "Les types de requêtes ont été récupérés avec succès"
+  "Request types fetched successfully": "Les types de requêtes ont été récupérés avec succès",
+  "Reset password - Barefoot Nomad": "Changement de mot de passe - Barefoot Nomad",
+  "Failed in sending Reset password link !!!": "Echec de l'emvoi du lien de changement de mot de passe !!!",
+  "A link to reset your password has been sent to your email address !!!": "Un lien de changement de mot de passe a ete envoye a votre adresse email !!!",
+  "Email does NOT exist in our database !!!": "Email n'existe pas dans notre base de donnees !!!",
+  "The passwords do NOT match !!!": "Les mots de passe ne correspondent pas !!!",
+  "Password well reset": "Mot de passe bien change",
+  "Please fill in the confirmation": "S'il vous plait confirmez votre mot de passe",
+  "Confirmation is required": "Une confirmation est requise",
+  "Invalid token": "Le jeton est invalide"
 }

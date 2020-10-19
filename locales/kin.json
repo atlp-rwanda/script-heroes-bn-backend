@@ -115,5 +115,14 @@
   "Request deleted successfully": "ubusabe bwasibwe neza",
   "Request id must be a number": "inomero y' ubusabe igomba kuba ari umubare",
   "Location id must be a number": "inomero y' ahantu igomba kuba umubare",
-  "Request types fetched successfully": "ubwoko bw' ubusabe bwazanywe neza"
+  "Request types fetched successfully": "ubwoko bw' ubusabe bwazanywe neza",
+  "Reset password - Barefoot Nomad": "Guhindura ijambo ry'ibanga - Barefoot Nomad",
+  "Failed in sending Reset password email !!!": "Guhindura ijambo ry'ibanga ntabwo byakunze !!!",
+  "A link to reset your password has been sent to your email address !!!": "Ilinki yo guhindura ijambo ry'ibanga yoherejwe kuri imeri yanyu !!!",
+  "Email does NOT exist in our database !!!": "Imeri ntabwo iri muri sisitemu !!!",
+  "The passwords do NOT match !!!": "Amajambo y'ibanga ntabwo asa !!!",
+  "Password well reset": "Guhindura ijambo ry'ibanga byagemze neza",
+  "Please fill in the confirmation": "Musabwa kwemeza ijambo ry'ibanga",
+  "Confirmation is required": "Emeza ijambo ry'ibanga",
+  "Invalid token": "Ijeto siyo"
 }

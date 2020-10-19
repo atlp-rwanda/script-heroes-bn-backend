@@ -142,5 +142,14 @@
   "Room in facility name created successfuly": "Room in facility name created successfuly",
   "Accomodation successfully updated": "Accomodation successfully updated",
   "Room Deleted successfully": "Room Deleted successfully",
-  "Accomodation deleted successfully": "Accomodation deleted successfully"
+  "Accomodation deleted successfully": "Accomodation deleted successfully",
+  "Reset password - Barefoot Nomad": "Reset password - Barefoot Nomad",
+  "Failed in sending Reset password email !!!": "Failed in sending Reset password email !!!",
+  "A link to reset your password has been sent to your email address !!!": "A link to reset your password has been sent to your email address !!!",
+  "Email does NOT exist in our database !!!": "Email does NOT exist in our database !!!",
+  "The passwords do NOT match !!!": "The passwords do NOT match !!!",
+  "Password well reset": "Password well reset",
+  "Please fill in the confirmation": "Please fill in the confirmation",
+  "Confirmation is required": "Confirmation is required",
+  "Invalid token": "Invalid token"
 }

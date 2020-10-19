@@ -18,7 +18,7 @@
     "seed": "sequelize db:seed:all",
     "admin:create": "babel-node src/database/superAdmin.js",
     "role:create": "babel-node src/database/superAdminRole.js",
-    "pretest": "export NODE_ENV=test && npm run migration:undo && npm run migrate && npm run seed"
+    "pretest": "cross-env NODE_ENV=test && npm run migration:undo && npm run migrate && npm run seed"
   },
   "author": "Andela Simulations Programme",
   "license": "MIT",
@@ -32,6 +32,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
     "dotenv": "^6.2.0",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",

@@ -52,6 +52,23 @@ Note: If you make changes that uses environmental variables make sure to add tho
 }
 ```
 
+### Forgot password
+
+```json
+{
+  "email": "example@email.com"
+}
+```
+
+### Reset password
+
+```json
+{
+  "password": "newPassword",
+  "confirmPassword": "newPassword"
+}
+```
+
 ## Profile Page Settings Endpoints
 
 ### Complete Profile Model
@@ -126,3 +143,4 @@ linemanager: DataTypes.INTEGER
 - Display Profile: `/api/profile`
 - Update Profile: `/api/profile/update`
 - Accomodations: `/api/accomodations`
+- Forgot Password: `/api/forgotPassword`
