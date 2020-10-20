@@ -1,19 +1,17 @@
-import { include } from 'underscore';
 /* eslint-disable no-undef */
 /* eslint-disable require-jsdoc */
 /* eslint-disable class-methods-use-this */
-import { User } from '../database/models';
 import sgMail from '@sendgrid/mail';
 import template from '../helpers/newRequestEmail';
-
 import {
   Request,
   Location,
   Accomodation,
-  RequestType
+  RequestType,
+  Trip,
+  User
 } from '../database/models';
-
-import { Trip } from '../database/models';
+import { createRequest, createNotification } from '../helpers/notification';
 
 class tripController {
   static async onewayTrip(req, res) {
@@ -28,7 +26,7 @@ class tripController {
     const { user } = req;
 
     const newRequest = await Request.create({
-      userId: req.user.id,
+      userId: user.id,
       type: 1,
       status: 'pending',
       linemanager: req.user.linemanager
@@ -58,6 +56,13 @@ class tripController {
       });
     }
 
+    await createNotification(
+      lineManager.id,
+      newRequest.id,
+      user.firstName,
+      1,
+      createRequest
+    );
     const email = template({ user, lineManager, viewLink });
     if (process.env.NODE_ENV === 'production' || 'development') {
       await sgMail.send(email);
@@ -77,12 +82,10 @@ class tripController {
       ]
     });
     if (findTrips) {
-      return res
-        .status(200)
-        .json({
-          message: res.__('Trips retrieved succesfully'),
-          Trips: findTrips
-        });
+      return res.status(200).json({
+        message: res.__('Trips retrieved succesfully'),
+        Trips: findTrips
+      });
     }
     if (!findTrip) {
       return res.status(404).json({ error: res.__('Trips not found') });
@@ -99,12 +102,10 @@ class tripController {
       ]
     });
     if (findTrip) {
-      return res
-        .status(200)
-        .json({
-          message: res.__('Trip retrieved succesfully'),
-          Trip: findTrip
-        });
+      return res.status(200).json({
+        message: res.__('Trip retrieved succesfully'),
+        Trip: findTrip
+      });
     }
     if (!findTrip) {
       return res.status(404).json({ error: res.__('Trip does not exist') });
@@ -117,12 +118,10 @@ class tripController {
     });
     if (findTrip) {
       const updatedTrip = await findTrip.update(req.body);
-      res
-        .status(201)
-        .json({
-          message: res.__('Trip updated succesfully'),
-          Trip: updatedTrip
-        });
+      res.status(201).json({
+        message: res.__('Trip updated succesfully'),
+        Trip: updatedTrip
+      });
     }
   }
 
@@ -132,12 +131,10 @@ class tripController {
     });
     if (findTrip) {
       const deleteTrip = await findTrip.destroy(req.body);
-      res
-        .status(201)
-        .json({
-          message: res.__('Trip deleted succesfully'),
-          Trip: deleteTrip
-        });
+      res.status(201).json({
+        message: res.__('Trip deleted succesfully'),
+        Trip: deleteTrip
+      });
     }
   }
 }

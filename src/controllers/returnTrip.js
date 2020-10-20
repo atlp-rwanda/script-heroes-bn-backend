@@ -8,6 +8,7 @@ import {
 } from '../database/models';
 import sgMail from '@sendgrid/mail';
 import autoMsg from '../helpers/newRequestEmail';
+import { createNotification, createRequest } from '../helpers/notification';
 
 class returnTripController {
   async getAll(req, res) {
@@ -38,6 +39,7 @@ class returnTripController {
       travelReasons,
       accomodationId
     } = req.body;
+    const { user } = req;
 
     const getRequest = {
       status: 'pending',
@@ -57,7 +59,7 @@ class returnTripController {
     }
 
     const msg = autoMsg({
-      user: req.user,
+      user,
       lineManager
     });
     if (
@@ -105,7 +107,13 @@ class returnTripController {
     };
 
     await Trip.create(newTrip);
-
+    await createNotification(
+      req.user.linemanager,
+      request.id,
+      user.firstName,
+      2,
+      createRequest
+    );
     res.status(200).json({
       status: 'ok',
       msg: res.__('Trip requested success'),
