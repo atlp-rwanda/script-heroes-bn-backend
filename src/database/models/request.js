@@ -11,11 +11,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Request.belongsTo(models.User, {
         foreignKey: 'userId',
-        as: 'user'
+        onDelete: 'CASCADE'
+      });
+      Request.belongsTo(models.RequestType, {
+        foreignKey: 'type',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       });
       Request.hasMany(models.Trip, {
-        foreignKey: 'requestId',
-        as: 'trips'
+        foreignKey: 'requestId'
       });
     }
   }

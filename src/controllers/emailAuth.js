@@ -23,7 +23,10 @@ class UserController {
     const msg = autoMsg({ email, firstName, url });
 
     try {
-      if (process.env.NODE_ENV === 'production'|| 'development') {
+      if (
+        process.env.NODE_ENV === 'production' ||
+        process.env.NODE_ENV === 'development'
+      ) {
         await sgMail.send(msg);
       }
       await User.create({

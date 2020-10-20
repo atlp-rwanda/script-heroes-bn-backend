@@ -896,6 +896,40 @@
         }
       }
     },
+    "/api/trips/return-trip": {
+      "post": {
+        "tags": ["Requests"],
+        "description": "add a return trip request",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authentication",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "$ref": "#/components/schemas/Trip"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "201": {
+          "description": "Successfuly created a request"
+        },
+        "400": {
+          "description": "Bad request"
+        }
+      }
+    },
     "/api/locations": {
       "get": {
         "tags": ["Locations"],
