@@ -1,7 +1,8 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import sinon from 'sinon';
+import sendMail from '../../src/helpers/sendMail';
 import app from '../../src/index';
-import { User } from '../../src/database/models';
 import { encode } from '../../src/utils/jwtFunctions';
 
 chai.should();
@@ -10,6 +11,9 @@ chai.use(chaiHttp);
 let token;
 const verifyToken = encode({ email: 'mail@mail.com' });
 describe('Auth', () => {
+  afterEach(() => {
+    sinon.restore();
+  });
   it('should return 201 if user is created successfully', (done) => {
     const user = {
       firstName: 'First',
@@ -18,6 +22,8 @@ describe('Auth', () => {
       phoneNumber: '3444444444',
       password: 'Password1'
     };
+    sinon.stub().usingPromise(sendMail).resolves();
+
     chai
       .request(app)
       .post('/api/auth/signup')

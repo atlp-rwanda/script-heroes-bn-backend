@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-import sgMail from '@sendgrid/mail';
+import sendMail from '../helpers/sendMail';
 import template from '../helpers/newRequestEmail';
 import { Trip, Request, RequestType, User } from '../database/models';
 
@@ -37,8 +37,11 @@ class RequestsController {
     }
 
     const email = template({ user, lineManager });
-    if (process.env.NODE_ENV === 'production') {
-      await sgMail.send(email);
+    if (
+      process.env.NODE_ENV === 'production' ||
+      process.env.NODE_ENV === 'development'
+    ) {
+      await sendMail(email);
     }
 
     trips.map((trip) => {
