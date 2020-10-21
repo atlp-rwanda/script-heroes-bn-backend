@@ -8,6 +8,7 @@ import asyncHandler from '../middlewares/asynchandler';
 import RequestsController from '../controllers/requests';
 import passwordRouter from './resetPassword';
 import trip from './returnTrip';
+import comments from './comments';
 
 const router = express.Router();
 
@@ -20,5 +21,6 @@ router.get('/request-types', asyncHandler(RequestsController.getRequestTypes));
 router.use('/', passwordRouter);
 router.use('/trip', trip);
 router.use('/profile', profile);
+router.use('/comments', comments);
 
 export default router;

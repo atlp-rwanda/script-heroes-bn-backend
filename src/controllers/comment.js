@@ -1,0 +1,52 @@
+import { Comment } from '../database/models';
+
+class CommentsController {
+  static async comment(req, res) {
+    const { userId, requestId, comment } = req.body;
+    const addComment = await Comment.create({ requestId, userId, comment });
+
+    res
+      .status(201)
+      .json({ message: res.__('Your comment has been created'), addComment });
+  }
+
+  static async getAllComments(req, res) {
+    const getAllComments = await Comment.findAll();
+
+    res.status(201).json({
+      message: res.__('Successful'),
+      comments: getAllComments
+    });
+  }
+
+  static async getOneComment(req, res) {
+    const { id } = req.params;
+    const getOneComment = await Comment.findOne({
+      where: {
+        id
+      }
+    });
+    if (!getOneComment) {
+      return res
+        .status(409)
+        .json({ message: res.__('Comment does not exist') });
+    }
+    res.status(200).json({
+      message: res.__('Success'),
+      comment: getOneComment
+    });
+  }
+
+  static async deleteComment(req, res) {
+    const { id } = req.params;
+    await Comment.destroy({
+      where: { id }
+    });
+
+    res.status(200).json({
+      message: res.__('Successfully deleted a comment')
+    });
+  }
+}
+
+export default CommentsController;
