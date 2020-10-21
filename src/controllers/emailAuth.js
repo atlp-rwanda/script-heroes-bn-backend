@@ -21,7 +21,6 @@ class UserController {
     const token = encode({ email });
     const url = `${process.env.BACK_END_URL}/${token}`;
     const msg = autoMsg({ email, firstName, url });
-
     try {
       if (
         process.env.NODE_ENV === 'production' ||

@@ -179,5 +179,14 @@
   "Decision must be one of approve or decline": "Icyemezo kigomba kuba ari kwemera cyangwa kwanga",
   "Destination not found": "Ntaho kujya zibashije kuboneka",
   "success": "byakunze",
-  "message sent successfully": "ubutumwa bwoherejwe neza"
+  "message sent successfully": "ubutumwa bwoherejwe neza",
+  "Your comment has been created": "Igitekerezo cyawe cyatanzwe",
+  "Successful": "Byanyuzemo",
+  "Comment does not exist": "Igitekerezo ushaka ntikibonetse",
+  "Success": "Byanyuzemo",
+  "Successfully deleted a comment": "Gusiba igitecyerezo cyanyu byagenze neza",
+  "Successfully updated a comment": "Guhindura igitecyerezo byagenze neza",
+  "Comment should be string": "Igitecyerezo cyigomba kuba ijambo",
+  "Comment input can't be empty": "Igitecyerezo cyigomba kuzuzwa",
+  "Comment is required": "Igitecyerezo cyawe cyiracyenewe"
 }
