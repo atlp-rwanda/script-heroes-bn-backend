@@ -5,7 +5,7 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.changeColumn('AccessTokens', 'token', {
+    await queryInterface.removeColumn('AccessTokens', 'token', {
       type: Sequelize.STRING(255)
     });
   }

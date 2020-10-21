@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Location.hasMany(models.Trip, { foreignKey: 'origin' });
       Location.hasMany(models.Trip, { foreignKey: 'destination' });
+      Location.hasMany(models.Accomodation, { foreignKey: 'locationId' });
     }
   }
   Location.init(

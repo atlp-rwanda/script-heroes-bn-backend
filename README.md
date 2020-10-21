@@ -147,6 +147,21 @@ linemanager: DataTypes.INTEGER
 }
 ```
 
+### Host/Supplier Add Accomodation model
+
+```json
+{
+  "facilityName": "Serena Hotel",
+  "description": "nice hotel",
+  "locationId": 1,
+  "photoUrl": "https://picsum.photos/200/300",
+  "roomNumbers": 5,
+  "price": 100,
+  "services": "restaurent and bar",
+  "amenities": "pool game"
+}
+```
+
 ### Endpoints
 
 - Hosted url: https://script-heroes-bn-backend-stgng.herokuapp.com/
@@ -164,3 +179,4 @@ linemanager: DataTypes.INTEGER
 - GET ALL oneway Trip: `/api/trips/oneway`
 - UPDATE oneway Trip: `/api/trips/oneway/:tripId`
 - DELETE oneway Trip: `/api/trips/oneway/:tripId`
+- Host Accommodations: `/api/host/accomodations`
