@@ -20,16 +20,4 @@ describe('landing page', () => {
         done();
       });
   });
-  it('Should return a 404 if the routes is not found', (done) => {
-    chai
-      .request(app)
-      .get('/notFound')
-      .end((err, res) => {
-        if (err) done(err);
-        res.should.have.status(404);
-        res.body.should.be.a('object');
-        res.body.should.have.property('errors');
-        done();
-      });
-  });
 });

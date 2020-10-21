@@ -1,10 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../src/index';
-import facebookRoute from '../src/routes/facebookRoutes';
-import faceConfig from '../src/middlewares/facebookSign';
 
-const should = chai.should();
 chai.use(chaiHttp);
 
 describe('facebook oauth', () => {

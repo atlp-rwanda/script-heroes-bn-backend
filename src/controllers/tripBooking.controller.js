@@ -4,12 +4,12 @@
 import sgMail from '@sendgrid/mail';
 import template from '../helpers/newRequestEmail';
 import {
+  User,
+  Trip,
   Request,
   Location,
   Accomodation,
-  RequestType,
-  Trip,
-  User
+  RequestType
 } from '../database/models';
 import { createRequest, createNotification } from '../helpers/notification';
 
@@ -64,7 +64,10 @@ class tripController {
       createRequest
     );
     const email = template({ user, lineManager, viewLink });
-    if (process.env.NODE_ENV === 'production' || 'development') {
+    if (
+      process.env.NODE_ENV === 'production' ||
+      process.env.NODE_ENV === 'development'
+    ) {
       await sgMail.send(email);
     }
     res.status(201).json({

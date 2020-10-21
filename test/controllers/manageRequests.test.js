@@ -1,7 +1,7 @@
-import chai, { util } from 'chai';
+import bcrypt from 'bcryptjs';
+import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../src/index';
-import bcrypt from 'bcryptjs';
 import { User, Request, UserRole } from '../../src/database/models';
 
 chai.should();

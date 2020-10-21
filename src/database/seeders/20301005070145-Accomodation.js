@@ -17,7 +17,7 @@ module.exports = {
         },
         {
           facilityName: 'marriot',
-          locationId: 3,
+          locationId: 2,
           description: 'adults',
           photoUrl: 'https://picsum.photos/seed/picsum/200/300',
           roomNumbers: 65,

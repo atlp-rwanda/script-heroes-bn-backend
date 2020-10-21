@@ -1,38 +1,32 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import sgMail from '@sendgrid/mail';
-import msgToReset from '../src/helpers/msgToResetPwd';
 import app from '../src/index';
 import { encode } from '../src/utils/jwtFunctions';
-import { User } from '../src/database/models';
 
 chai.should();
 chai.use(chaiHttp);
 
 describe('Forgot password', () => {
-  const email = 'flongtest@gmail.com';
+  const email = 'paul@email.com';
   const token = encode({ email });
-  before(async () => {
-    await User.destroy({
-      truncate: { cascade: true }
-    });
-  });
-  before('Creating user to use to test', (done) => {
+  it('Should return 201 if user is created successfully', (done) => {
+    const user = {
+      firstName: 'First',
+      lastName: 'Last',
+      email: 'paul@email.com',
+      phoneNumber: '0787002000',
+      password: 'Password123'
+    };
     chai
       .request(app)
       .post('/api/auth/signup')
+      .send(user)
       .set({ 'Accept-Language': 'en' })
-      .send({
-        firstName: 'Firstname',
-        lastName: 'Lastname',
-        email: 'flongtest@gmail.com',
-        phoneNumber: '0780000000',
-        password: 'Password123'
-      })
-      .end((err) => {
-        if (err) {
-          done(err);
-        }
+      .end((err, res) => {
+        if (err) done(err);
+        res.should.have.status(201);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
         done();
       });
   });
@@ -64,11 +58,29 @@ describe('Forgot password', () => {
         done();
       });
   });
+  it('Should return an 200 if a link is well sent', (done) => {
+    const theEmail = 'paul@email.com';
+    chai
+      .request(app)
+      .post('/api/forgotPassword')
+      .send({ email: theEmail })
+      .end((err, res) => {
+        if (err) done(err);
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have
+          .property('message')
+          .eq(
+            'A link to reset your password has been sent to your email address !!!'
+          );
+        done();
+      });
+  });
   it('Should return an 404 error if the token is invalid', (done) => {
     chai
       .request(app)
       .post('/api/resetPassword/123')
-      .send({ password: 'bravo123@andela', confirmPassword: 'bravo123@andela' })
+      .send({ password: 'Password123', confirmPassword: 'Password123' })
       .end((err, res) => {
         if (err) done(err);
         res.should.have.status(404);
@@ -108,7 +120,7 @@ describe('Forgot password', () => {
     chai
       .request(app)
       .post(`/api/resetPassword/${token}`)
-      .send({ password: 'bravo123@andela' })
+      .send({ password: 'Password123' })
       .end((err, res) => {
         if (err) done(err);
         res.should.have.status(400);
@@ -122,16 +134,12 @@ describe('Forgot password', () => {
       .request(app)
       .post(`/api/resetPassword/${token}`)
       .send({
-        password: 'bravo123@andela',
-        confirmPassword: 'bravo123@project'
+        password: 'Password123',
+        confirmPassword: 'Password123456'
       })
       .end((err, res) => {
         if (err) done(err);
         res.should.have.status(400);
-        res.body.should.be.a('object');
-        res.body.should.have
-          .property('error')
-          .eq('The passwords do NOT match !!!');
         done();
       });
   });
@@ -139,12 +147,10 @@ describe('Forgot password', () => {
     chai
       .request(app)
       .post(`/api/resetPassword/${token}`)
-      .send({ password: 'bravo123@andela', confirmPassword: 'bravo123@andela' })
+      .send({ password: 'Password123', confirmPassword: 'Password123' })
       .end((err, res) => {
         if (err) done(err);
         res.should.have.status(200);
-        res.body.should.be.a('object');
-        res.body.should.have.property('message').eq('Password well reset');
         done();
       });
   });

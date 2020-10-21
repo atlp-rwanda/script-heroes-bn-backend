@@ -28,10 +28,8 @@ export default {
           )
         });
       })
-      .catch(() => {
-        res.status(400).send({
-          err: res.__('Failed in sending Reset password email !!!')
-        });
+      .catch((err) => {
+        res.status(400).send({ err });
       });
   }
 };

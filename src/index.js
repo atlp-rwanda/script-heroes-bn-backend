@@ -16,6 +16,8 @@ import googleRouter from './routes/googleRoutes';
 import facebookRoute from './routes/facebookRoutes';
 import roleRegisterRoute from './routes/api/roleRegister.route';
 import roleAssignRoute from './routes/api/roleAssign.route';
+import searchTripsRouter from './routes/searchTrips';
+import searchRequestsRouter from './routes/searchRequests';
 
 require('dotenv').config();
 
@@ -50,10 +52,13 @@ app.use('/', facebookRoute);
 
 app.use('/api', roleRegisterRoute);
 app.use('/api', roleAssignRoute);
-app.get('/', (req, res, next) => {
+app.get('/', (req, res) => {
   res.status(200).send({ message: res.__('Welcome to barefoot nomad') });
 });
 app.use('/api', routes);
+
+app.use('/api', searchTripsRouter);
+app.use('/api', searchRequestsRouter);
 
 /// catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -64,7 +69,7 @@ app.use((req, res, next) => {
 
 // development error handler
 if (!isProduction) {
-  app.use((err, req, res, next) => {
+  app.use((err, req, res) => {
     res.status(err.status || 500);
     res.json({
       errors: {
