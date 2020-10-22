@@ -19,6 +19,7 @@ export default {
       roomType,
       accomodationId: accomodation.id
     });
+
     return res.status(201).json({
       message: res.__('Accomodation created successfully'),
       accomodation: {
@@ -38,7 +39,9 @@ export default {
         }
       ]
     });
+
     return res.status(200).json(accomodations);
+
   },
   getAnAccommodation: async (req, res) => {
     const { id } = req.params;
@@ -69,6 +72,7 @@ export default {
     return res
       .status(200)
       .json({ message: res.__('Accomodation deleted successfully') });
+
   },
   updateAccomodation: async (req, res) => {
     const { id } = req.params;
@@ -77,7 +81,9 @@ export default {
     if (!accomodation) {
       return res
         .status(404)
+
         .json({ message: res.__('No accomodation with such id') });
+
     }
     await Accomodation.update(
       {

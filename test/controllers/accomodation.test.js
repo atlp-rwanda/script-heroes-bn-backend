@@ -16,7 +16,6 @@ describe('Accomodation', () => {
   before('Creating User to get token', async () => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash('Password1', salt);
-
     const role = await UserRole.create({
       name: 'TRAVEL_ADMIN',
       description: 'travel admin'
@@ -73,6 +72,7 @@ describe('Accomodation', () => {
       });
   });
   it('Should return 400 if there is a missing fields on accomodation', (done) => {
+
     chai
       .request(app)
       .post('/api/accommodations')
