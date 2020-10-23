@@ -134,7 +134,7 @@ linemanager: DataTypes.INTEGER
 }
 ```
 
-### Return Trip model
+### Return & Oneway Trip model
 
 ```json
 {
@@ -158,3 +158,9 @@ linemanager: DataTypes.INTEGER
 - Accomodations: `/api/accomodations`
 - Forgot Password: `/api/forgotPassword`
 - Trip With Return Date: `/api/trip/return-trip`
+- oneway Trip Request: `/api/trips/oneway`
+- POST oneway Trip: `/api/trips/oneway`
+- GET ONE oneway Trip: `/api/trips/oneway/:tripId`
+- GET ALL oneway Trip: `/api/trips/oneway`
+- UPDATE oneway Trip: `/api/trips/oneway/:tripId`
+- DELETE oneway Trip: `/api/trips/oneway/:tripId`

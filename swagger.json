@@ -1292,5 +1292,34 @@
         "description": "Location Model"
       }
     }
+  },
+  "Oneway Trip": {
+    "properties": {
+      "id": {
+        "type": "integer",
+        "example": 4
+      },
+      "origin": {
+        "type": "integer",
+        "example": "3"
+      },
+      "destination": {
+        "type": "integer",
+        "example": "5"
+      },
+      "from": {
+        "type": "date",
+        "example": "2020-02-01"
+      },
+      "till": {
+        "type": "date",
+        "example": "2020-10-01"
+      },
+      "tripReason": {
+        "type": "string",
+        "example": "Vacation"
+      }
+    },
+    "description": "Trip booking model"
   }
 }

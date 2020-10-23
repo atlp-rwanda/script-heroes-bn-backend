@@ -37,7 +37,10 @@ class RequestsController {
     }
 
     const email = template({ user, lineManager });
-    if (process.env.NODE_ENV === 'production') {
+    if (
+      process.env.NODE_ENV === 'production' ||
+      process.env.NODE_ENV === 'development'
+    ) {
       await sgMail.send(email);
     }
 
