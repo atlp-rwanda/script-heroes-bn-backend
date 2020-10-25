@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
       User.hasOne(models.Bookings, {
         foreignKey: 'requester',
       });
+      User.hasOne(models.Ratings, {
+        foreignKey: 'rater',
+      });
     }
   }
   User.init(

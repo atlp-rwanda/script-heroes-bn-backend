@@ -14,13 +14,13 @@ export default (req, res, next) => {
         'string.empty': res.__('Id of a room cannot be empty'),
         'any.required': res.__('Id of a room is required')
       }),
-    checkInDate: Joi.string()
+    checkInDate: Joi.date()
       .required()
       .messages({
         'string.empty': res.__('Check-in date cannot be empty'),
         'any.required': res.__('Check-in date is required')
       }),
-    checkOutDate: Joi.string()
+    checkOutDate: Joi.date()
       .required()
       .messages({
         'string.empty': res.__('Check-out date cannot be empty'),
