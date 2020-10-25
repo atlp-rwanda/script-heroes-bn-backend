@@ -41,7 +41,6 @@ export default {
     });
 
     return res.status(200).json(accomodations);
-
   },
   getAnAccommodation: async (req, res) => {
     const { id } = req.params;
@@ -72,7 +71,6 @@ export default {
     return res
       .status(200)
       .json({ message: res.__('Accomodation deleted successfully') });
-
   },
   updateAccomodation: async (req, res) => {
     const { id } = req.params;
@@ -83,7 +81,6 @@ export default {
         .status(404)
 
         .json({ message: res.__('No accomodation with such id') });
-
     }
     await Accomodation.update(
       {

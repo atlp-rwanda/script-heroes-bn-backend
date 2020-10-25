@@ -17,13 +17,16 @@ module.exports = (sequelize, DataTypes) => {
         as: 'role',
         foreignKey: 'roleId'
       });
-      User.hasMany(models.Request, { foreignKey: 'userId' });
-      
       User.hasMany(models.Reaction, {
         foreignKey: 'userId',
         onDelete: 'CASCADE'
       });
-      User.hasMany(models.Request, { as: 'userId', foreignKey: 'userId' });
+      User.hasMany(models.Request, {
+        foreignKey: 'userId'
+      });
+      User.hasOne(models.Bookings, {
+        foreignKey: 'requester',
+      });
     }
   }
   User.init(

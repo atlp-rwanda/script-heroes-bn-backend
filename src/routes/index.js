@@ -29,7 +29,7 @@ router.use('/trip', trip);
 router.use('/profile', profile);
 router.use('/profile', profile);
 router.use('/accommodations', accomodation);
-router.use('/accommodations/book', bookAccomodation);
+router.use('/accomodations/book', bookAccomodation);
 router.use('/host', host);
 router.use('/accommodations', reaction);
 router.use('/accommodations/book', bookAccomodation);
