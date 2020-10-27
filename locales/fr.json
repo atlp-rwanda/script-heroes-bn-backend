@@ -169,5 +169,7 @@
   "Request declined successfully": "Demande refusée avec succès",
   "Request doesn't exist": "La demande n'existe pas",
   "Decision must be one of approve or decline": "La décision doit être d'approuver ou de refuser",
-  "Destination not found": "Arrive non trouvés"
+  "Destination not found": "Arrive non trouvés",
+  "success": "succès",
+  "message sent successfully": "message envoyé avec succès"
 }

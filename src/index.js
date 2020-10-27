@@ -5,6 +5,7 @@ import cors from 'cors';
 import errorhandler from 'errorhandler';
 import swaggerUi from 'swagger-ui-express';
 import cron from 'node-cron';
+import path from 'path';
 import { Op } from 'sequelize';
 import sgMail from '@sendgrid/mail';
 import swaggerDocument from '../swagger.json';
@@ -35,6 +36,9 @@ app.use(express.static(`${__dirname}/public`));
 
 app.use(i18n.init);
 
+app.use('/static/chat', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '../public/chat-client.html'));
+});
 app.use('/api-docs', swaggerUi.serve);
 app.get('/api-docs', swaggerUi.setup(swaggerDocument));
 if (!isProduction) {
@@ -98,4 +102,7 @@ const server = app.listen(process.env.PORT || 3000, () => {
   console.log(`Listening on port ${server.address().port}`);
 });
 
+const socketServer = require('socket.io')(server);
+
+export { socketServer };
 export default app;
