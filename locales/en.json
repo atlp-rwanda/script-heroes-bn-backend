@@ -217,5 +217,19 @@
   "Successfully created accomodation": "Successfully created accomodation",
   "retrieved success": "retrieved success",
   "Successfully updated accomodation": "Successfully updated accomodation",
-  "Accommodation deleted successfully": "Accommodation deleted successfully"
+  "Accommodation deleted successfully": "Accommodation deleted successfully",
+  "Already liked": "Already liked",
+  "Accomodation liked successfully": "Accomodation liked successfully",
+  "Already reacted": "Already reacted",
+  "Accomodation unliked successfully": "Accomodation unliked successfully",
+  "You have never booked that accomodation": "You have never booked that accomodation",
+  "Reaction un done": "Reaction un done",
+  "Reaction undone": "Reaction undone",
+  "Reaction successfull": "Reaction successfull",
+  "Reaction successful": "Reaction successful",
+  "Like undone": "Like undone",
+  "Reliked successfully": "Reliked successfully",
+  "Re-unliked accomodation": "Re-unliked accomodation",
+  "Unliked accomodation": "Unliked accomodation",
+  "Accomodation liked": "Accomodation liked"
 }

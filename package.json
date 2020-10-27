@@ -11,13 +11,14 @@
     "start": "npm run build && node dist/index",
     "dev": "nodemon --exec babel-node src/index.js",
     "build": "babel src --out-dir dist",
-    "test": "cross-env NODE_ENV=test && nyc --reporter=html --reporter=text mocha --timeout 150000 -r @babel/register test/*  --exit",
+    "test": "nyc --reporter=html --reporter=text mocha --timeout 80000 -r @babel/register test/*  --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "migration:undo": "sequelize db:migrate:undo:all",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",
     "admin:create": "babel-node src/database/superAdmin.js",
-    "role:create": "babel-node src/database/superAdminRole.js"
+    "role:create": "babel-node src/database/superAdminRole.js",
+    "pretest": "cross-env NODE_ENV=test && npm run migration:undo && npm run migrate && npm run seed"
   },
   "author": "Andela Simulations Programme",
   "license": "MIT",

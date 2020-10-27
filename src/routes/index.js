@@ -11,6 +11,8 @@ import trip from './returnTrip';
 import bookAccomodation from './accomodations/bookAccomodation';
 import onewayBooking from './Trips/TripRequest.route';
 import host from './hostAccomodations';
+import reaction from './accomodations/reaction.route'
+
 
 const router = express.Router();
 
@@ -28,5 +30,5 @@ router.use('/profile', profile);
 router.use('/accommodations', accomodation);
 router.use('/accommodations/book', bookAccomodation);
 router.use('/host', host);
-
+router.use('/accommodations', reaction);
 export default router;
