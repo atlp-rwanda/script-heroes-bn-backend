@@ -176,5 +176,6 @@
   "Request doesn't exist": "Ubusabe ntabwo bubonetse",
   "Request approved successfully": "Kwemera ubusabe byagenze neza",
   "Request declined successfully": "Kwanga ubusabe byagenze neza",
-  "Decision must be one of approve or decline": "Icyemezo kigomba kuba ari kwemera cyangwa kwanga"
+  "Decision must be one of approve or decline": "Icyemezo kigomba kuba ari kwemera cyangwa kwanga",
+  "Destination not found": "Ntaho kujya zibashije kuboneka"
 }
