@@ -740,6 +740,231 @@
         }
       }
     },
+    "/api/host/accommodations": {
+      "post": {
+        "tags": ["Accomodations"],
+        "description": "Creating an accommodation",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authenticated admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "facilityName": {
+                    "type": "string",
+                    "example": "Peace view hotel"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Hotel located in Gisenyi town"
+                  },
+                  "locationId": {
+                    "type": "integer",
+                    "example": 4
+                  },
+                  "roomType": {
+                    "type": "string",
+                    "example": "Classic"
+                  },
+                  "photoUrl": {
+                    "type": "string",
+                    "example": "http://photourl"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Accommodation created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accommodation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Accomodations"],
+        "description": "Getting an accommodation",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authenticated admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Get all accommodations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accommodation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/api/host/accommodations/{id}": {
+      "put": {
+        "tags": ["Accomodations"],
+        "description": "Updating an accommodation",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authenticated admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "facilityName": {
+                    "type": "string",
+                    "example": "Peace view hotel"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Hotel located in Gisenyi town"
+                  },
+                  "locationId": {
+                    "type": "integer",
+                    "example": 4
+                  },
+                  "photoUrl": {
+                    "type": "string",
+                    "example": "http://photourl"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Accommodation updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accommodation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Accomodations"],
+        "description": "Getting a single accommodation",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authenticated admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Get a single accommodation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accommodation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Accomodations"],
+        "description": "Deleting an accommodation",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authenticated admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Accommodation deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Accommodation deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
     "/api/request-types": {
       "get": {
         "tags": ["Requests"],

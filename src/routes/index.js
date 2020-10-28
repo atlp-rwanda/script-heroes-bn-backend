@@ -8,8 +8,9 @@ import asyncHandler from '../middlewares/asynchandler';
 import RequestsController from '../controllers/requests';
 import passwordRouter from './resetPassword';
 import trip from './returnTrip';
-import bookAccomodation from './accomodations/bookAccomodation'
+import bookAccomodation from './accomodations/bookAccomodation';
 import onewayBooking from './Trips/TripRequest.route';
+import host from './hostAccomodations';
 
 const router = express.Router();
 
@@ -25,6 +26,7 @@ router.use('/trip', trip);
 router.use('/profile', profile);
 router.use('/profile', profile);
 router.use('/accommodations', accomodation);
-router.use('/accommodations/book', bookAccomodation)
+router.use('/accommodations/book', bookAccomodation);
+router.use('/host', host);
 
 export default router;

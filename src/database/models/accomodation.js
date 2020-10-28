@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       Accomodation.belongsTo(models.Location, {
         foreignKey: 'locationId',
-        as: 'location'
+        onDelete: 'CASCADE'
       });
       Accomodation.hasMany(models.Trip, { foreignKey: 'accomodationId' });
     }
@@ -27,7 +27,11 @@ module.exports = (sequelize, DataTypes) => {
       facilityName: DataTypes.STRING,
       locationId: DataTypes.INTEGER,
       description: DataTypes.STRING,
-      photoUrl: DataTypes.STRING
+      photoUrl: DataTypes.STRING,
+      roomNumbers: DataTypes.INTEGER,
+      price: DataTypes.INTEGER,
+      services: DataTypes.STRING(1234),
+      amenities: DataTypes.STRING(1234)
     },
     {
       sequelize,
