@@ -20,6 +20,22 @@ module.exports = {
           isBooked: false,
           createdAt: new Date(),
           updatedAt: new Date()
+        },
+        {
+          UserId: 1,
+          accomodationId: 3,
+          roomType: 'high-class',
+          isBooked: true,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          UserId: 2,
+          accomodationId: 4,
+          roomType: 'high-class',
+          isBooked: true,
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
       ],
       {}

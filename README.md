@@ -180,3 +180,5 @@ linemanager: DataTypes.INTEGER
 - UPDATE oneway Trip: `/api/trips/oneway/:tripId`
 - DELETE oneway Trip: `/api/trips/oneway/:tripId`
 - Host Accommodations: `/api/host/accomodations`
+- Accomodation like Reaction: `/api/accomodations/like`
+- Accomodation unlike Reaction: `/api/accomodations/unlike`

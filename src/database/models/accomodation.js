@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE'
       });
       Accomodation.hasMany(models.Trip, { foreignKey: 'accomodationId' });
+      Accomodation.hasMany(models.Reaction, { foreignKey: 'accomodationId' });
     }
   }
   Accomodation.init(
