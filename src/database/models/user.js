@@ -17,13 +17,13 @@ module.exports = (sequelize, DataTypes) => {
         as: 'role',
         foreignKey: 'roleId'
       });
-      
       User.hasMany(models.Request, { foreignKey: 'userId' });
       
       User.hasMany(models.Reaction, {
         foreignKey: 'userId',
         onDelete: 'CASCADE'
       });
+      User.hasMany(models.Request, { as: 'userId', foreignKey: 'userId' });
     }
   }
   User.init(
@@ -40,14 +40,15 @@ module.exports = (sequelize, DataTypes) => {
       currency: DataTypes.STRING,
       country: DataTypes.STRING,
       department: DataTypes.STRING,
-      linemanager: DataTypes.INTEGER,
-      roleId: {
+      linemanager: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
       },
-      managerId: {
-        type: DataTypes.INTEGER
+      roleId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       }
     },
     {

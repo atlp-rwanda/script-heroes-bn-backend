@@ -30,7 +30,8 @@ class tripController {
     const newRequest = await Request.create({
       userId: req.user.id,
       type: 1,
-      status: 'pending'
+      status: 'pending',
+      linemanager: req.user.linemanager
     });
 
     const newTrip = await Trip.create({
@@ -40,7 +41,8 @@ class tripController {
       from,
       till,
       accomodationId,
-      travelReasons
+      travelReasons,
+      linemanager: req.user.linemanager
     });
 
     const tripId = await Trip.findOne({
@@ -67,7 +69,7 @@ class tripController {
   }
 
   static async getTrips(req, res) {
-    const findTrips= await Trip.findAll({
+    const findTrips = await Trip.findAll({
       include: [
         { model: Location },
         { model: Request, include: [{ model: User }, { model: RequestType }] },
@@ -75,12 +77,15 @@ class tripController {
       ]
     });
     if (findTrips) {
-      return res.status(200).json({ message: res.__('Trips retrieved succesfully'), Trips: findTrips });
+      return res
+        .status(200)
+        .json({
+          message: res.__('Trips retrieved succesfully'),
+          Trips: findTrips
+        });
     }
     if (!findTrip) {
-      return res
-        .status(404)
-        .json({ error: res.__('Trips not found') });
+      return res.status(404).json({ error: res.__('Trips not found') });
     }
   }
 
@@ -94,12 +99,15 @@ class tripController {
       ]
     });
     if (findTrip) {
-      return res.status(200).json({ message: res.__('Trip retrieved succesfully'), Trip: findTrip });
+      return res
+        .status(200)
+        .json({
+          message: res.__('Trip retrieved succesfully'),
+          Trip: findTrip
+        });
     }
     if (!findTrip) {
-      return res
-        .status(404)
-        .json({ error: res.__('Trip does not exist') });
+      return res.status(404).json({ error: res.__('Trip does not exist') });
     }
   }
 
@@ -111,7 +119,10 @@ class tripController {
       const updatedTrip = await findTrip.update(req.body);
       res
         .status(201)
-        .json({ message: res.__('Trip updated succesfully'), Trip: updatedTrip });
+        .json({
+          message: res.__('Trip updated succesfully'),
+          Trip: updatedTrip
+        });
     }
   }
 
@@ -123,7 +134,10 @@ class tripController {
       const deleteTrip = await findTrip.destroy(req.body);
       res
         .status(201)
-        .json({ message: res.__('Trip deleted succesfully'), Trip: deleteTrip });
+        .json({
+          message: res.__('Trip deleted succesfully'),
+          Trip: deleteTrip
+        });
     }
   }
 }

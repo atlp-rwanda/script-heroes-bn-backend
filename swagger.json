@@ -263,6 +263,75 @@
         }
       }
     },
+    "/api/requests": {
+      "get": {
+        "tags": ["Manage requests"],
+        "description": "display requests created by manager's direct report",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "a token for authentication",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+            "200": {
+              "description": "Successful  pull of requests"
+            },
+            "404": {
+              "description": "User with provided email not found"
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "401": {
+              "description": "Access denied"
+            }
+          }
+      }
+    },
+    "/api/requests/{id}/{decision}": {
+      "put": {
+        "tags": ["Manage requests"],
+        "description": "display requests created by manager's direct report",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-auth-token",
+            "description": "authentication token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "description": "request id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "path",
+            "name": "decision",
+            "description": "decision on a request(approve or decline)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+            "201": {
+              "description": "Decision made successfully"
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "401": {
+              "description": "Access denied"
+            }
+          }
+      }
+    },
     "/api/profile/update": {
       "put": {
         "tags": ["Profile"],

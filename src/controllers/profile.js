@@ -16,11 +16,14 @@ class ProfileController {
       userFound.department != null &&
       userFound.linemanager != null
     ) {
-      res.status(400).json({ error: 'Profile is already complete' });
+      return res
+        .status(400)
+        .json({ error: res.__('Profile is already complete') });
     } else {
       const completedProfile = await userFound.update(req.body);
-      res.status(201).json({
-        msg: 'Profile completed succesfuly',
+
+      return res.status(201).json({
+        msg: res.__('Profile completed succesfuly'),
         profile: completedProfile
       });
     }
@@ -39,9 +42,12 @@ class ProfileController {
     });
     if (userFound) {
       const updatedProfile = await userFound.update(req.body);
-      res
+      return res
         .status(201)
-        .json({ msg: 'Profile updated succesfuly', profile: updatedProfile });
+        .json({
+          msg: res.__('Profile updated succesfuly'),
+          profile: updatedProfile
+        });
     }
   }
 }

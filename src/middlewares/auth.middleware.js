@@ -1,5 +1,6 @@
 import { decode } from '../utils/jwtFunctions';
 import { User, AccessToken, UserRole } from '../database/models';
+import RoleService from '../services/role.service';
 
 class AuthMiddleware {
   static async checkToken(req, res, next) {
@@ -48,6 +49,19 @@ class AuthMiddleware {
       return res.status(401).send({ message: res.__('Unauthorized request') });
     }
     return next();
+  }
+  static async checkManager(req, res, next) {
+    const token = req.headers['x-auth-token'];
+    const userParam = await decode(token);
+
+    const { roleId } = userParam;
+    if (roleId === null)
+      return res.status(401).json({ msg: res.__('Unauthorized request') });
+
+    const role = await RoleService.findRoleById(roleId);
+
+    if (role.name === 'MANAGER') return next();
+    return res.status(401).json({ msg: res.__('Unauthorized request') });
   }
 }
 

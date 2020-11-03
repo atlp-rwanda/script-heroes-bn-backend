@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'accomodationId',
         onDelete: 'CASCADE'
       });
+      Trip.belongsTo(models.User, {
+        foreignKey: 'linemanager',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
     }
   }
   Trip.init(
@@ -46,7 +51,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         references: { model: 'Accomodation', key: 'id' }
       },
-      travelReasons: DataTypes.STRING
+      travelReasons: DataTypes.STRING,
+      linemanager: DataTypes.INTEGER
     },
     {
       sequelize,
