@@ -1,6 +1,5 @@
 import { UserRole } from '../database/models';
 
-const Role = new UserRole();
 class RoleService {
   static async findRoleByName(userRole) {
     const role = await UserRole.findOne({ where: { name: userRole } });

@@ -71,7 +71,7 @@ const email = ({ user, lineManager, approveLink, viewLink }) => {
     <body>
     
     <h2 class='text'>Dear ${lineManager.firstName},</h2>
-    <h3 class='text'>${user.firstName} ${user.lastName} has requested a trip</h3>
+    <h3 class='text'>${user.firstName} ${user.lastName} has updated his/her the request</h3>
     <h3 class='text'>Click Approve to approve the request, or click View to view the request information</h3>
     <a href = "${approveLink}"><button class='text'>Approve</button></a>
     <a href = "${viewLink}"><button class='text'>View</button></a>
@@ -95,8 +95,8 @@ const email = ({ user, lineManager, approveLink, viewLink }) => {
   return {
     to: lineManager.email,
     from: process.env.SENDER_EMAIL,
-    subject: 'New Request Updated',
-    text: `${user.name} has updated his/her request`,
+    subject: 'Updated Request',
+    text: `${user.name} has updated the request to travel`,
     html: template
   };
 };

@@ -1,16 +1,9 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../../src/index';
-import {
-  User,
-  Trip,
-  Accomodation,
-  Type,
-  Request,
-  Location
-} from '../../src/database/models';
-import { encode, decode } from '../../src/utils/jwtFunctions';
 import sgMail from '@sendgrid/mail';
+import app from '../../src/index';
+import { User, Trip, Accomodation, Type, Request, Location } from '../../src/database/models';
+import { encode, decode } from '../../src/utils/jwtFunctions';
 import autoMsg from '../../src/helpers/newRequestEmail';
 
 chai.use(chaiHttp);
