@@ -4,6 +4,7 @@ import roomController from '../../controllers/rooms';
 import asyncHandler from '../../middlewares/asynchandler';
 import accomodationValidation from '../../middlewares/validations/accomodation';
 import authMiddleware from '../../middlewares/auth.middleware';
+
 const accomodationRoute = new Router();
 const { checkToken, checkAdmin } = authMiddleware;
 
@@ -14,7 +15,9 @@ accomodationRoute
     accomodationValidation,
     asyncHandler(accomodationController.addAccomodation)
   )
-  .get('/', [checkToken], asyncHandler(accomodationController.getAccomodations))
+  .get('/',
+    [checkToken],
+    asyncHandler(accomodationController.getAccomodations))
   .get(
     '/:id',
     [checkToken, checkAdmin],

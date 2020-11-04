@@ -1,16 +1,26 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Locations', {
+    await queryInterface.createTable('Bookings', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      country: {
+      bookedRoom: {
+        type: Sequelize.INTEGER,
+      },
+      accomodationId: {
+        type: Sequelize.INTEGER,
+      },
+      requester: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      checkInDate: {
         type: Sequelize.STRING
       },
-      city: {
+      checkOutDate: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -25,6 +35,6 @@ module.exports = {
   },
   // eslint-disable-next-line no-unused-vars
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Locations');
+    await queryInterface.dropTable('Bookings');
   }
 };
