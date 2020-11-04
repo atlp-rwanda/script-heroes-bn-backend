@@ -184,3 +184,4 @@ linemanager: DataTypes.INTEGER
 - Accomodation unlike Reaction: `/api/accomodations/unlike`
 - Get All requests as a manager: `/api/requests`
 - Make a decision on a request as a manager: `/api/requests/:id/:decision`
+- Most Traveled Destination: `/api/most-traveled/destinations`

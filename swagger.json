@@ -1382,6 +1382,44 @@
       }
     }
   },
+  "/api/most-traveled/destinations": {
+    "get": {
+      "tags": ["Destinations"],
+      "description": "get most traveled destination",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "x-auth-token",
+          "description": "a token for authentication",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "responses": {
+          "200": {
+            "description": "retrieved success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Trips not found"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
+          }
+        }
+      }
+    }
+  },
   "components": {
     "schemas": {
       "Users": {
@@ -1615,5 +1653,27 @@
       }
     },
     "description": "Trip booking model"
+  },
+  "/api/request-types": {
+    "get": {
+      "tags": ["Requests"],
+      "description": "request types",
+      "parameters": [
+        {
+          "name": "x-auth-token",
+          "in": "headers",
+          "description": "authentication token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Success"
+        }
+      }
+    }
   }
 }

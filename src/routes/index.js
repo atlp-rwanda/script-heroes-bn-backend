@@ -11,8 +11,10 @@ import trip from './returnTrip';
 import bookAccomodation from './accomodations/bookAccomodation';
 import onewayBooking from './Trips/TripRequest.route';
 import host from './hostAccomodations';
-import reaction from './accomodations/reaction.route'
-import manageRequests from './requests/manageRequests'
+import reaction from './accomodations/reaction.route';
+import manageRequests from './requests/manageRequests';
+import travelDestination from './travelDestinations';
+
 const router = express.Router();
 
 router.use('/auth', users);
@@ -30,6 +32,8 @@ router.use('/accommodations', accomodation);
 router.use('/accommodations/book', bookAccomodation);
 router.use('/host', host);
 router.use('/accommodations', reaction);
-router.use('/accommodations/book', bookAccomodation)
-router.use('/requests',manageRequests);
+router.use('/accommodations/book', bookAccomodation);
+router.use('/requests', manageRequests);
+router.use('/most-traveled', travelDestination);
+
 export default router;

@@ -239,5 +239,6 @@
   "Request doesn't exist": "Request doesn't exist",
   "Decision must be one of approve or decline": "Decision must be one of approve or decline",
   "Request declined successfully": "Request declined successfully",
-  "Request approved successfully": "Request approved successfully"
+  "Request approved successfully": "Request approved successfully",
+  "Destination not found": "Destination not found"
 }
