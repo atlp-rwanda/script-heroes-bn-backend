@@ -171,5 +171,14 @@
   "Decision must be one of approve or decline": "La décision doit être d'approuver ou de refuser",
   "Destination not found": "Arrive non trouvés",
   "success": "succès",
-  "message sent successfully": "message envoyé avec succès"
+  "message sent successfully": "message envoyé avec succès",
+  "Your comment has been created": "Votre commentaire a été créé",
+  "Successful": "Réussie",
+  "Comment does not exist": "Le commentaire n'existe pas",
+  "Success": "Succès",
+  "Successfully deleted a comment": "Un commentaire a bien été supprimé",
+  "Successfully updated a comment": "Mise à jour réussie d'un commentaire",
+  "Comment should be string": "Le commentaire doit être une chaîne",
+  "Comment input can't be empty": "L'entrée du commentaire ne peut pas être vide",
+  "Comment is required": "Un commentaire est requis"
 }

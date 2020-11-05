@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router } from 'express';
 import passConfig from '../middlewares/googleSign';
 import { encode } from '../utils/jwtFunctions';
 import { AccessToken } from '../database/models';
@@ -21,11 +21,10 @@ googleRouter.get(
       email: req.user.email
     });
     const savedToken = await AccessToken.create({ token });
-    res.send({
-      message: 'Google Login Success',
-      user: req.user,
-      token: savedToken.token
+    res.cookie('access_token', savedToken, {
+      expires: new Date(Date.now() + 8 * 3600000) // Cookie will be removed after 8 hours
     });
+    res.redirect('/');
   }
 );
 
