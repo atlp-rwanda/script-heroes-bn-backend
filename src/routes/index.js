@@ -9,12 +9,13 @@ import RequestsController from '../controllers/requests';
 import passwordRouter from './resetPassword';
 import trip from './returnTrip';
 import bookAccomodation from './accomodations/bookAccomodation';
-import onewayBooking from './Trips/TripRequest.route';
 import host from './hostAccomodations';
 import notificationRouter from './notification/notification';
 import reaction from './accomodations/reaction.route';
 import manageRequests from './requests/manageRequests';
 import travelDestination from './travelDestinations';
+import ratings from './accomodations/ratings';
+import onewayBooking from './Trips/TripRequest.route';
 
 const router = express.Router();
 
@@ -34,5 +35,6 @@ router.use('/accommodations', reaction);
 router.use('/requests', manageRequests);
 router.use('/notifications', notificationRouter);
 router.use('/most-traveled', travelDestination);
+router.use('/ratings', ratings);
 
 export default router;

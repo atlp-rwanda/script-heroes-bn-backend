@@ -187,3 +187,17 @@ linemanager: DataTypes.INTEGER
 - Most Traveled Destination: `/api/most-traveled/destinations`
 - Getting notifications: `/api/api/notifications`
 - Counting unseen notification: `/api/api/notifications/count`
+- Login With Google: `/users/auth/google`
+- Login with Facebook: `/users/auth/google`
+- GET all bookings: `/api/accomodations/book`
+- POST a booking: `/api/accomodations/book`
+- DELETE all bookings: `/api/accomodations/book`
+- GET a single booking: `/api/accomodations/book/id`
+- DELETE a booking: `/api/accomodations/book/id`
+- UPDATE a booking: `/api/accomodations/book/id`
+- GET all ratings: `/api/ratings`
+- POST a rating: `/api/ratings`
+- GET ratings of an accommodation: `/api/ratings/accommodation/accommodationId`
+- GET a single rating: `/api/ratings/id`
+- DELETE a rating: `/api/ratings/id`
+- UPDATE a rating: `/api/ratings/id`
