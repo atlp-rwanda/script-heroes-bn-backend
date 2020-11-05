@@ -1,4 +1,5 @@
-import { Request, User } from '../database/models';
+import { Request, User, Notification } from '../database/models';
+
 class ManagerequestsMiddleware {
   static async makeDecision(req, res, next) {
     const id = parseInt(req.params.id, 10);

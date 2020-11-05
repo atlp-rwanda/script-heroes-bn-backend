@@ -185,3 +185,5 @@ linemanager: DataTypes.INTEGER
 - Get All requests as a manager: `/api/requests`
 - Make a decision on a request as a manager: `/api/requests/:id/:decision`
 - Most Traveled Destination: `/api/most-traveled/destinations`
+- Getting notifications: `/api/api/notifications`
+- Counting unseen notification: `/api/api/notifications/count`

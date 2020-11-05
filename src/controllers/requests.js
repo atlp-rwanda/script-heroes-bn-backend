@@ -3,8 +3,8 @@ import sgMail from '@sendgrid/mail';
 import customMessages from '../utils/customMessages';
 import updateTemplate from '../helpers/updateRequestEmail';
 import template from '../helpers/newRequestEmail';
-
 import { Trip, Request, RequestType, User } from '../database/models';
+import { createRequest, createNotification } from '../helpers/notification';
 
 const {
   notYourRequest,
@@ -48,8 +48,19 @@ class RequestsController {
       });
     }
 
+    await createNotification(
+      lineManager.id,
+      request.id,
+      user.firstName,
+      3,
+      createRequest
+    );
+
     const email = template({ user, lineManager });
-    if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
+    if (
+      process.env.NODE_ENV === 'production' ||
+      process.env.NODE_ENV === 'development'
+    ) {
       await sgMail.send(email);
     }
 
@@ -147,11 +158,16 @@ class RequestsController {
     }
 
     const email = updateTemplate({ user, lineManager });
-    if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
+    if (
+      process.env.NODE_ENV === 'production' ||
+      process.env.NODE_ENV === 'development'
+    ) {
       await sgMail.send(email);
     }
 
-    res.status(201).json({ request, trip: updatedTrip, msg: res.__(requestUpdated) });
+    res
+      .status(201)
+      .json({ request, trip: updatedTrip, msg: res.__(requestUpdated) });
   }
 }
 export default RequestsController;

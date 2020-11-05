@@ -2,11 +2,7 @@ import chai, { util } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../src/index';
 import bcrypt from 'bcryptjs';
-import {
-  User,
-  Request,
-  UserRole
-} from '../../src/database/models';
+import { User, Request, UserRole } from '../../src/database/models';
 
 chai.should();
 chai.use(chaiHttp);
@@ -29,10 +25,10 @@ describe('Manage requests', () => {
       name: 'MANAGER',
       description: 'travel manager'
     });
-      manager1 = await User.findOne({ where: { email: 'manager1@gmail.com' } });
-    await manager1.update({"roleId":role.id})
-      manager2 = await User.findOne({ where: { email: 'manager2@gmail.com' } });
-    await manager2.update({"roleId":role.id})
+    manager1 = await User.findOne({ where: { email: 'manager1@gmail.com' } });
+    await manager1.update({ roleId: role.id });
+    manager2 = await User.findOne({ where: { email: 'manager2@gmail.com' } });
+    await manager2.update({ roleId: role.id });
     const user1 = {
       firstName: 'First',
       lastName: 'Last',
@@ -75,8 +71,8 @@ describe('Manage requests', () => {
   after(async () => {
     await User.destroy({ where: { id: _user1.id } });
     await User.destroy({ where: { id: _user2.id } });
-    await User.destroy({ where: { id:  manager1.id } });
-    await User.destroy({ where: { id:  manager2.id } });
+    await User.destroy({ where: { id: manager1.id } });
+    await User.destroy({ where: { id: manager2.id } });
     await Request.destroy({ where: { id: reqId1 } });
     await Request.destroy({ where: { id: reqId2 } });
   });

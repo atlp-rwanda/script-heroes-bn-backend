@@ -247,5 +247,9 @@
 	"Booking retrieved successfully": "Booking retrieved successfully",
 	"Booking updated successfully": "Booking updated successfully",
 	"Booking deleted successfully": "Booking deleted successfully",
-	"Bookings deleted successfully": "Bookings deleted successfully"
+	"Bookings deleted successfully": "Bookings deleted successfully",
+	"Notification deleted successfully": "Notification deleted successfully",
+	"Notification set as read successfully": "Notification set as read successfully",
+	"The request is updated successfully": "The request is updated successfully",
+	"No notification found": "No notification found"
 }

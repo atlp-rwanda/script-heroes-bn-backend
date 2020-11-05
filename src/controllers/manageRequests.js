@@ -1,4 +1,6 @@
 import { Request, User, RequestType } from '../database/models';
+import { createNotification } from '../helpers/notification';
+
 export default {
   displaydirectRequests: async (req, res) => {
     const directRequests = await Request.findAll({
@@ -19,6 +21,15 @@ export default {
     const type = RequestType.findOne({ where: { id: request.type } });
     const status = decision + 'd';
     await request.update({ status: `${status}` });
+
+    // Creating a notification
+    await createNotification(
+      request.userId,
+      request.id,
+      req.user.firstName,
+      request.type,
+      status
+    );
     return res.status(201).json({
       message: res.__(`Request ${status} successfully`),
       request: request
