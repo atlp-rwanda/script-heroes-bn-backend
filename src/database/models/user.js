@@ -25,11 +25,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId'
       });
       User.hasOne(models.Bookings, {
-        foreignKey: 'requester',
+        foreignKey: 'requester'
       });
       User.hasOne(models.Ratings, {
-        foreignKey: 'rater',
+        foreignKey: 'rater'
       });
+      User.hasMany(models.ChatMessage, { foreignKey: 'senderId' });
     }
   }
   User.init(

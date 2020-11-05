@@ -31,6 +31,10 @@
     {
       "name": "Locations",
       "description": "location routes"
+    },
+    {
+      "name": "Chat",
+      "description": "backend chat"
     }
   ],
   "paths": {
@@ -1306,7 +1310,7 @@
         "parameters": [
           {
             "name": "x-auth-token",
-            "in": "headers",
+            "in": "header",
             "description": "authentication token",
             "required": true,
             "schema": {
@@ -1341,7 +1345,7 @@
         "parameters": [
           {
             "name": "x-auth-token",
-            "in": "headers",
+            "in": "header",
             "description": "authentication token",
             "required": true,
             "schema": {
@@ -1371,6 +1375,70 @@
         "responses": {
           "201": {
             "description": "success"
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
+    "/api/chat": {
+      "get": {
+        "tags": ["Chat"],
+        "description": "get all previous chat messages",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "token for authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "400": {
+            "description": "bad request"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Chat"],
+        "description": "send a message",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatMessage"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "message sent successfully"
           },
           "400": {
             "description": "bad request"
@@ -1622,6 +1690,14 @@
           }
         },
         "description": "Location Model"
+      },
+      "ChatMessage": {
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "description": "Message Model"
       }
     }
   },

@@ -98,3 +98,4 @@ typings/
 .DS_Store
 # End of https://www.gitignore.io/api/node
 
+public/chat-client.html

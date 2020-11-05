@@ -173,7 +173,8 @@ linemanager: DataTypes.INTEGER
 - Accomodations: `/api/accomodations`
 - Forgot Password: `/api/forgotPassword`
 - Trip With Return Date: `/api/trip/return-trip`
-- oneway Trip Request: `/api/trips/oneway`
+- Oneway Trip Request: `/api/trips/oneway`
+- Multi city Request: `/api/trips/multi-city`
 - POST oneway Trip: `/api/trips/oneway`
 - GET ONE oneway Trip: `/api/trips/oneway/:tripId`
 - GET ALL oneway Trip: `/api/trips/oneway`
@@ -201,3 +202,4 @@ linemanager: DataTypes.INTEGER
 - GET a single rating: `/api/ratings/id`
 - DELETE a rating: `/api/ratings/id`
 - UPDATE a rating: `/api/ratings/id`
+- Barefoot chat: `/api/chat`
