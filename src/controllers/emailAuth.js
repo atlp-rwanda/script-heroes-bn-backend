@@ -77,6 +77,7 @@ class UserController {
     const saveToken = await AccessToken.create({ token });
 
     return res.status(200).json({
+      id: userAccount.id,
       message: res.__('Your are successfully loged in'),
       token: saveToken.token
     });

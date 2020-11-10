@@ -1,6 +1,4 @@
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Bookings extends Model {
@@ -19,24 +17,27 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Bookings.init({
-    bookedRoom: {
-      type: DataTypes.INTEGER,
-      references: { model: 'Room', key: 'id' }
+  Bookings.init(
+    {
+      bookedRoom: {
+        type: DataTypes.INTEGER,
+        references: { model: 'Room', key: 'id' }
+      },
+      accomodationId: {
+        type: DataTypes.INTEGER,
+        references: { model: 'Accomodation', key: 'id' }
+      },
+      requester: {
+        type: DataTypes.INTEGER,
+        references: { model: 'User', key: 'id' }
+      },
+      checkInDate: DataTypes.STRING,
+      checkOutDate: DataTypes.STRING
     },
-    accomodationId: {
-      type: DataTypes.INTEGER,
-      references: { model: 'Accomodation', key: 'id' }
-    },
-    requester: {
-      type: DataTypes.INTEGER,
-      references: { model: 'User', key: 'id' }
-    },
-    checkInDate: DataTypes.STRING,
-    checkOutDate: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Bookings',
-  });
+    {
+      sequelize,
+      modelName: 'Bookings'
+    }
+  );
   return Bookings;
 };

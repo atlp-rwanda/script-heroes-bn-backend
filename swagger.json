@@ -1060,6 +1060,72 @@
         }
       }
     },
+    "/api/allRequestsByStatus/search?status=pending": {
+      "get": {
+        "tags": ["Requests"],
+        "description": "Search requests by Status",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/getRequestById/search?id={id}": {
+      "get": {
+        "tags": ["Requests"],
+        "description": "Search request by ID",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/getRequestByUser/search?id={id}": {
+      "get": {
+        "tags": ["Requests"],
+        "description": "Search requests by user ID",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/trips": {
       "get": {
         "tags": ["Requests"],
@@ -1156,6 +1222,116 @@
           },
           "400": {
             "description": "bad request"
+          }
+        }
+      }
+    },
+    "/api/allTripsByStartDate/search?startDate={date}": {
+      "get": {
+        "tags": ["Trips"],
+        "description": "Search trip by Start date",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/allTripsByEndDate/search?endDate={date}": {
+      "get": {
+        "tags": ["Trips"],
+        "description": "Search trip by End date",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/allTripsByOrigin/search?origin={country}": {
+      "get": {
+        "tags": ["Trips"],
+        "description": "Search trip by Origin",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/allTripsByDest/search?destination={country}": {
+      "get": {
+        "tags": ["Trips"],
+        "description": "Search trip by Destination",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/allTripsByOriginDest/search?origin={country}&destination={country}": {
+      "get": {
+        "tags": ["Trips"],
+        "description": "Search trip by both Origin & Destination",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "headers",
+            "description": "authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
           }
         }
       }

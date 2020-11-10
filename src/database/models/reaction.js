@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Reaction extends Model {
     /**
@@ -20,15 +18,18 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE'
       });
     }
-  };
-  Reaction.init({
-    accomodationId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
-    liked: DataTypes.BOOLEAN,
-    unliked: DataTypes.BOOLEAN
-  }, {
-    sequelize,
-    modelName: 'Reaction',
-  });
+  }
+  Reaction.init(
+    {
+      accomodationId: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER,
+      liked: DataTypes.BOOLEAN,
+      unliked: DataTypes.BOOLEAN
+    },
+    {
+      sequelize,
+      modelName: 'Reaction'
+    }
+  );
   return Reaction;
 };

@@ -185,6 +185,14 @@ linemanager: DataTypes.INTEGER
 - Accomodation unlike Reaction: `/api/accomodations/unlike`
 - Get All requests as a manager: `/api/requests`
 - Make a decision on a request as a manager: `/api/requests/:id/:decision`
+- Search for Requests by status: `/api/allRequestsByStatus/search?status=status`
+- Search for Requests by ID: `/api/getRequestById/search?id=requestId`
+- Search for Requests by user ID: `/api/getRequestByUser/search?id=userId`
+- Search for Trips by Start date: `/api/allTripsByStartDate/search?startDate=date`
+- Search for Trips by End date: `/api/allTripsByEndDate/search?endDate=date`
+- Search for Trips by Origin: `/api/allTripsByOrigin/search?origin=country`
+- Search for Trips by Destination: `/api/allTripsByDest/search?destination=country`
+- Search for Trips by Origin & Dest: `/api/allTripsByOriginDest/search?origin=country&destination=country`
 - Most Traveled Destination: `/api/most-traveled/destinations`
 - Getting notifications: `/api/api/notifications`
 - Counting unseen notification: `/api/api/notifications/count`
