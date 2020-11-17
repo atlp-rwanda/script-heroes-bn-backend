@@ -14,8 +14,6 @@ import i18n from './utils/internationalization/i18n';
 import routes from './routes';
 import googleRouter from './routes/googleRoutes';
 import facebookRoute from './routes/facebookRoutes';
-import roleRegisterRoute from './routes/api/roleRegister.route';
-import roleAssignRoute from './routes/api/roleAssign.route';
 import searchTripsRouter from './routes/searchTrips';
 import searchRequestsRouter from './routes/searchRequests';
 
@@ -50,9 +48,7 @@ if (!isProduction) {
 app.use('/', googleRouter);
 app.use('/', facebookRoute);
 
-app.use('/api', roleRegisterRoute);
-app.use('/api', roleAssignRoute);
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
   res.status(200).send({ message: res.__('Welcome to barefoot nomad') });
 });
 app.use('/api', routes);
