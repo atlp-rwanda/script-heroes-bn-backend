@@ -26,6 +26,11 @@ profileRouter
     '/',
     AuthMiddleware.checkToken,
     asyncHandler(ProfileController.displayProfile)
+  )
+  .get(
+    '/managers',
+    AuthMiddleware.checkToken,
+    asyncHandler(ProfileController.getManagers)
   );
 
 export default profileRouter;

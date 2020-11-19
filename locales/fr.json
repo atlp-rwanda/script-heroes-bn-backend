@@ -180,5 +180,8 @@
   "Successfully updated a comment": "Mise à jour réussie d'un commentaire",
   "Comment should be string": "Le commentaire doit être une chaîne",
   "Comment input can't be empty": "L'entrée du commentaire ne peut pas être vide",
-  "Comment is required": "Un commentaire est requis"
+  "Comment is required": "Un commentaire est requis",
+  "Managers retrieved successfully": "Gestionnaires récupérés avec succès",
+  "No managers found": "Aucun gestionnaire trouvé",
+  "Role does't exist": "Le rôle n'existe pas"
 }

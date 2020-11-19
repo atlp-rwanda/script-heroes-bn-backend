@@ -168,7 +168,7 @@ describe('Requests', () => {
   it('should get request by id', (done) => {
     chai
       .request(app)
-      .get(`/api/trips/${requestId}`)
+      .get(`/api/requests/${requestId}`)
       .set({ 'x-auth-token': token })
       .end((err, res) => {
         if (err) done(err);
@@ -181,7 +181,7 @@ describe('Requests', () => {
   it('should get all requests', (done) => {
     chai
       .request(app)
-      .get('/api/trips')
+      .get('/api/requests')
       .set({ 'x-auth-token': token })
       .end((err, res) => {
         if (err) done(err);
@@ -194,7 +194,7 @@ describe('Requests', () => {
   it('should update a request still open', (done) => {
     chai
       .request(app)
-      .patch(`/api/trips/open/${requestId}`)
+      .patch(`/api/requests/open/${requestId}`)
       .set({ 'Accept-Language': 'en', 'x-auth-token': token })
       .send({
         origin: 2,
@@ -213,7 +213,7 @@ describe('Requests', () => {
   it('should delete a request', (done) => {
     chai
       .request(app)
-      .delete(`/api/trips/${requestId}`)
+      .delete(`/api/requests/${requestId}`)
       .set({ 'x-auth-token': token })
       .end((err, res) => {
         if (err) done(err);
