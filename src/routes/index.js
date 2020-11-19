@@ -18,6 +18,8 @@ import travelDestination from './travelDestinations';
 import ratings from './accomodations/ratings';
 import onewayBooking from './Trips/TripRequest.route';
 import comment from './comments/comments';
+import rolesRoute from './roles';
+import usersRouter from './users';
 
 const router = express.Router();
 
@@ -39,6 +41,8 @@ router.use('/most-traveled', travelDestination);
 router.use('/ratings', ratings);
 router.use('/trip', trip);
 router.use('/chat', chat);
+router.use('/role', rolesRoute);
+router.use('/users', usersRouter);
 router.use('/', comment);
 
 export default router;

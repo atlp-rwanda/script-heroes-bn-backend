@@ -91,6 +91,17 @@ class UserController {
     });
   }
 
+  static async getUsers(req, res) {
+    const users = await User.findAll({
+      attributes: ['firstName', 'lastName', 'email', 'id', 'roleId']
+    });
+
+    return res.status(200).json({
+      message: res.__('users fetched successfully'),
+      users
+    });
+  }
+
   static async hashPassword(adminPassword) {
     const salt = await bcrypt.genSalt(10);
     const hashedAdminPassword = await bcrypt.hash(adminPassword, salt);
