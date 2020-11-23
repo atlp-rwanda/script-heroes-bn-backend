@@ -19,7 +19,8 @@ class searchTripController {
     const trips = await Trip.findAll({
       include: [
         { model: Accomodation },
-        { model: Location },
+        { model: Location, as: 'Origin' },
+        { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] }
       ],
       where: {
@@ -49,7 +50,8 @@ class searchTripController {
     const trips = await Trip.findAll({
       include: [
         { model: Accomodation },
-        { model: Location },
+        { model: Location, as: 'Origin' },
+        { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] }
       ],
       where: {
@@ -93,7 +95,8 @@ class searchTripController {
     const trips = await Trip.findAll({
       include: [
         { model: Accomodation },
-        { model: Location },
+        { model: Location, as: 'Origin' },
+        { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] }
       ],
       where: {
@@ -134,7 +137,8 @@ class searchTripController {
     const trips = await Trip.findAll({
       include: [
         { model: Accomodation },
-        { model: Location },
+        { model: Location, as: 'Origin' },
+        { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] }
       ],
       where: {
@@ -187,7 +191,8 @@ class searchTripController {
     const trips = await Trip.findAll({
       include: [
         { model: Accomodation },
-        { model: Location },
+        { model: Location, as: 'Origin' },
+        { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] }
       ],
       where: {

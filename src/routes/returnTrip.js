@@ -3,6 +3,7 @@ import ReturnTrip from '../controllers/returnTrip';
 import asynchandler from '../middlewares/asynchandler';
 import AuthMiddleware from '../middlewares/auth.middleware';
 import { validateReturnTrip } from '../middlewares/validations/returnTripValidations';
+import TripsMiddleware from '../middlewares/trips';
 
 const router = Router();
 const returnTrip = new ReturnTrip();
@@ -17,11 +18,13 @@ router.post(
 router.delete(
   '/return-trip/:id',
   AuthMiddleware.checkToken,
+  TripsMiddleware.CheckOwner,
   asynchandler(returnTrip.deleteTrip)
 );
 router.put(
   '/return-trip/:id',
   AuthMiddleware.checkToken,
+  TripsMiddleware.CheckOwner,
   asynchandler(returnTrip.updateTrip)
 );
 

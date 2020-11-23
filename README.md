@@ -170,6 +170,7 @@ linemanager: DataTypes.INTEGER
 - Complete Profile: `/api/profile/complete`
 - Display Profile: `/api/profile`
 - Update Profile: `/api/profile/update`
+- Display Managers: `/api/profile/managers`
 - Accomodations: `/api/accomodations`
 - Forgot Password: `/api/forgotPassword`
 - Trip With Return Date: `/api/trip/return-trip`
@@ -183,8 +184,8 @@ linemanager: DataTypes.INTEGER
 - Host Accommodations: `/api/host/accomodations`
 - Accomodation like Reaction: `/api/accomodations/like`
 - Accomodation unlike Reaction: `/api/accomodations/unlike`
-- Get All requests as a manager: `/api/requests`
-- Make a decision on a request as a manager: `/api/requests/:id/:decision`
+- Get All requests as a manager: `/api/request/manager`
+- Make a decision on a request as a manager: `/api/request/manager/:id/:decision`
 - Search for Requests by status: `/api/allRequestsByStatus/search?status=status`
 - Search for Requests by ID: `/api/getRequestById/search?id=requestId`
 - Search for Requests by user ID: `/api/getRequestByUser/search?id=userId`

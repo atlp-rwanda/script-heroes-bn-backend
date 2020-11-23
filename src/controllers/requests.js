@@ -66,6 +66,7 @@ class RequestsController {
 
     trips.map((trip) => {
       trip.requestId = request.id;
+      trip.userId = req.user.id;
       return trip;
     });
 
@@ -100,7 +101,9 @@ class RequestsController {
 
   static async getRequests(req, res) {
     const { user } = req;
-    const requests = await user.getRequests();
+    const requests = await user.getRequests({
+      include: [{ model: User }, { model: RequestType }]
+    });
 
     if (!requests || !requests.length) {
       return res.status(404).json({

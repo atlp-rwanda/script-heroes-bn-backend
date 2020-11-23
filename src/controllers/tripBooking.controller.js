@@ -29,7 +29,8 @@ class tripController {
       userId: user.id,
       type: 1,
       status: 'pending',
-      linemanager: req.user.linemanager
+      linemanager: req.user.linemanager,
+      userId: user.id
     });
 
     const newTrip = await Trip.create({
@@ -40,7 +41,8 @@ class tripController {
       till,
       accomodationId,
       travelReasons,
-      linemanager: req.user.linemanager
+      linemanager: req.user.linemanager,
+      userId: req.user.id
     });
 
     const tripId = await Trip.findOne({
@@ -78,8 +80,10 @@ class tripController {
 
   static async getTrips(req, res) {
     const findTrips = await Trip.findAll({
+      where: { userId: req.user.id },
       include: [
-        { model: Location },
+        { model: Location, as: 'Origin' },
+        { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] },
         { model: Accomodation }
       ]
@@ -99,7 +103,8 @@ class tripController {
     const findTrip = await Trip.findOne({
       where: { id: req.params.id },
       include: [
-        { model: Location },
+        { model: Location, as: 'Origin' },
+        { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] },
         { model: Accomodation }
       ]

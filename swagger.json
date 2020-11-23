@@ -267,7 +267,7 @@
         }
       }
     },
-    "/api/requests": {
+    "/api/request/manager": {
       "get": {
         "tags": ["Manage requests"],
         "description": "display requests created by manager's direct report",
@@ -281,22 +281,22 @@
           }
         ],
         "responses": {
-            "200": {
-              "description": "Successful  pull of requests"
-            },
-            "404": {
-              "description": "User with provided email not found"
-            },
-            "400": {
-              "description": "Bad request"
-            },
-            "401": {
-              "description": "Access denied"
-            }
+          "200": {
+            "description": "Successful  pull of requests"
+          },
+          "404": {
+            "description": "User with provided email not found"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
           }
+        }
       }
     },
-    "/api/requests/{id}/{decision}": {
+    "/api/request/manager/{id}/{decision}": {
       "put": {
         "tags": ["Manage requests"],
         "description": "display requests created by manager's direct report",
@@ -324,16 +324,16 @@
           }
         ],
         "responses": {
-            "201": {
-              "description": "Decision made successfully"
-            },
-            "400": {
-              "description": "Bad request"
-            },
-            "401": {
-              "description": "Access denied"
-            }
+          "201": {
+            "description": "Decision made successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Access denied"
           }
+        }
       }
     },
     "/api/profile/update": {
@@ -1126,7 +1126,7 @@
         }
       }
     },
-    "/api/trips": {
+    "/api/requests": {
       "get": {
         "tags": ["Requests"],
         "description": "get all individual requests",
@@ -1154,7 +1154,7 @@
         }
       }
     },
-    "/api/trips/{id}": {
+    "/api/requests/{id}": {
       "get": {
         "tags": ["Requests"],
         "description": "get an individual request by id",

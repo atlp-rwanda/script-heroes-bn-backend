@@ -1,8 +1,11 @@
 import db from '../database/models/index';
+import { User, UserRole } from '../database/models';
+import { decode } from '../utils/jwtFunctions';
+import RoleService from '../services/role.service';
 
 class ProfileController {
   static async completeProfile(req, res) {
-    const userFound = await db.User.findOne({
+    const userFound = await User.findOne({
       where: { email: req.user.email }
     });
 
@@ -29,16 +32,40 @@ class ProfileController {
   }
 
   static async displayProfile(req, res) {
-    const userFound = await db.User.findOne({
+    const userFound = await User.findOne({
       where: { email: req.user.email }
     });
+    const linemanagerId = userFound.linemanager;
+    const linemanager = await User.findByPk(linemanagerId);
+    const { firstName, lastName } = linemanager;
+
     if (userFound) {
-      res.status(200).json({ profile: userFound });
+      res.status(200).json({
+        profile: {
+          id: userFound.id,
+          firstName: userFound.firstName,
+          lastName: userFound.lastName,
+          email: userFound.email,
+          isVerified: true,
+          phoneNumber: userFound.phoneNumber,
+          password: userFound.password,
+          gender: userFound.gender,
+          birthdate: userFound.birthdate,
+          language: userFound.languge,
+          currency: userFound.currency,
+          country: userFound.country,
+          department: userFound.department,
+          linemanager: `${firstName} ${lastName}`,
+          roleId: userFound.roleId,
+          createdAt: userFound.createdAt,
+          updatedAt: userFound.updatedAt
+        }
+      });
     }
   }
 
   static async updateProfile(req, res) {
-    const userFound = await db.User.findOne({
+    const userFound = await User.findOne({
       where: { email: req.user.email }
     });
     if (userFound) {
@@ -48,6 +75,20 @@ class ProfileController {
         profile: updatedProfile
       });
     }
+  }
+
+  static async getManagers(req, res) {
+    const role = await UserRole.findOne({ where: { name: 'MANAGER' } });
+    if (!role) {
+      return res.status(404).json({ message: res.__("Role does't exist") });
+    }
+    const Managers = await User.findAll({ where: { roleId: role.id } });
+    if (!Managers) {
+      return res.status(404).json({ message: res.__('No managers found') });
+    }
+    return res
+      .status(200)
+      .json({ message: res.__('Managers retrieved successfully'), Managers });
   }
 }
 export default ProfileController;

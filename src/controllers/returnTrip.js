@@ -13,9 +13,11 @@ import { createNotification, createRequest } from '../helpers/notification';
 class returnTripController {
   async getAll(req, res) {
     const trips = await Trip.findAll({
+      where: { userId: req.user.id },
       include: [
         { model: Accomodation },
-        { model: Location },
+        { model: Location, as: 'Origin' },
+        { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] }
       ]
     });
@@ -104,7 +106,8 @@ class returnTripController {
       travelReasons,
       accomodationId: getAccomodation.id,
       requestId: request.id,
-      linemanager: req.user.linemanager
+      linemanager: req.user.linemanager,
+      userId: req.user.id
     };
 
     await Trip.create(newTrip);

@@ -1,19 +1,16 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../src/index';
-import { User } from '../../src/database/models';
+import { User, UserRole } from '../../src/database/models';
 import { encode } from '../../src/utils/jwtFunctions';
 
 chai.should();
 chai.use(chaiHttp);
 let token;
+let token1;
+let roleId;
 const wrongToken = encode({ email: 'unexistingemail@email.com' });
 describe('/api/profile/complete', () => {
-  before(async () => {
-    await User.destroy({
-      truncate: { cascade: true }
-    });
-  });
   before('Creating user to use to test', (done) => {
     chai
       .request(app)
@@ -38,8 +35,17 @@ describe('/api/profile/complete', () => {
       { isVerified: true },
       { where: { email: 'email@example.com' } }
     );
+    const role = await UserRole.create({
+      name: 'MANAGER',
+      description: 'travel manager'
+    });
+    roleId = role.id;
+    const manager = await User.findOne({
+      where: { email: 'email@example.com' }
+    });
+    await manager.update({ roleId: role.id });
   });
-  before('Logging in  user to use to test ', (done) => {
+  before('Logging in  user1 to use to test ', (done) => {
     chai
       .request(app)
       .post('/api/auth/login')
@@ -54,8 +60,26 @@ describe('/api/profile/complete', () => {
         done();
       });
   });
-
-  it("should return 40 if a user doesn't have the authorization token", (done) => {
+  before('Logging in  user2 to use to test ', (done) => {
+    chai
+      .request(app)
+      .post('/api/auth/login')
+      .send({ email: 'doe@email.com', password: 'Password123' })
+      .set({ 'Accept-Language': 'en' })
+      .end((err, res) => {
+        if (err) {
+          done(err);
+        }
+        token1 = res.body.token;
+        res.should.have.status(200);
+        done();
+      });
+  });
+  after(async () => {
+    await User.destroy({ where: { email: 'email@example.com' } });
+    await UserRole.destroy({ where: { id: roleId } });
+  });
+  it("should return 400 if a user doesn't have the authorization token", (done) => {
     const profile = {
       gender: 'Male',
       birthdate: '1856-02-09',
@@ -130,7 +154,7 @@ describe('/api/profile/complete', () => {
     chai
       .request(app)
       .get('/api/profile')
-      .set({ 'x-auth-token': token })
+      .set({ 'x-auth-token': token1 })
       .end((err, res) => {
         if (err) {
           done(err);
@@ -290,6 +314,20 @@ describe('/api/profile/complete', () => {
           done(err);
         }
         res.should.have.status(400);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should get all managers profile', (done) => {
+    chai
+      .request(app)
+      .get('/api/profile/managers')
+      .set({ 'x-auth-token': token })
+      .end((err, res) => {
+        if (err) {
+          done(err);
+        }
+        res.should.have.status(200);
         res.body.should.be.a('object');
         done();
       });
