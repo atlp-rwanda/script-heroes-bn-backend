@@ -37,7 +37,14 @@ class ProfileController {
     });
     const linemanagerId = userFound.linemanager;
     const linemanager = await User.findByPk(linemanagerId);
-    const { firstName, lastName } = linemanager;
+
+    let firstName = '';
+    let lastName = '';
+
+    if (linemanager) {
+      firstName = linemanager.firstName;
+      lastName = linemanager.lastName;
+    }
 
     if (userFound) {
       res.status(200).json({
@@ -51,11 +58,12 @@ class ProfileController {
           password: userFound.password,
           gender: userFound.gender,
           birthdate: userFound.birthdate,
-          language: userFound.languge,
+          language: userFound.language,
           currency: userFound.currency,
           country: userFound.country,
           department: userFound.department,
           linemanager: `${firstName} ${lastName}`,
+          linemanagerId: userFound.linemanager,
           roleId: userFound.roleId,
           createdAt: userFound.createdAt,
           updatedAt: userFound.updatedAt

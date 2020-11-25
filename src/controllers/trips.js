@@ -17,11 +17,6 @@ class Trips {
         { model: Request, include: [{ model: User }, { model: RequestType }] }
       ]
     });
-    if (!trips || !trips.length) {
-      return res.status(404).json({
-        msg: res.__('No trips found')
-      });
-    }
     res.status(200).json({
       status: 'ok',
       msg: res.__('Retrieved success'),
