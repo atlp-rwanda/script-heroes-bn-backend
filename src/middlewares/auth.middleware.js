@@ -50,13 +50,13 @@ class AuthMiddleware {
     }
     return next();
   }
-  static async checkManager(req, res, next) {
-    const token = req.headers['x-auth-token'];
-    const userParam = await decode(token);
 
-    const { roleId } = userParam;
-    if (roleId === null)
-      return res.status(401).json({ msg: res.__('Unauthorized request') });
+  static async checkManager(req, res, next) {
+    // const token = req.headers['x-auth-token'];
+    // const userParam = await decode(token);
+
+    const { roleId } = req.user;
+    if (roleId === null) return res.status(401).json({ msg: res.__('Unauthorized request') });
 
     const role = await RoleService.findRoleById(roleId);
 
