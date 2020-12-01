@@ -11,7 +11,7 @@ export default {
     if (!emailExists) {
       return res
         .status(404)
-        .json({ err: res.__('Email does NOT exist in our database !!!') });
+        .json({ err: res.__('Email does not exist in our database') });
     }
     const { email } = req.body;
     const token = encode({ email });
