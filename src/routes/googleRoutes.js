@@ -1,10 +1,13 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import passConfig from '../middlewares/googleSign';
 import { encode } from '../utils/jwtFunctions';
 import { AccessToken } from '../database/models';
 
 const googleRouter = express.Router();
+
 googleRouter.use(passConfig.initialize());
+googleRouter.use(cookieParser());
 
 googleRouter.get(
   '/users/auth/google',
@@ -18,15 +21,11 @@ googleRouter.get(
       id: req.user.id,
       firstName: req.user.firstName,
       lastName: req.user.lastName,
-      email: req.user.email,
-      roleId: req.user.roleId
+      email: req.user.email
     });
     const savedToken = await AccessToken.create({ token });
-    res.send({
-      message: 'Google Login Success',
-      user: req.user,
-      token: savedToken.token
-    });
+    res.cookie('token', savedToken);
+    res.redirect(process.env.FRONTEND_URL);
   }
 );
 

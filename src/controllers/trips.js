@@ -11,7 +11,10 @@ class Trips {
     const trips = await Trip.findAll({
       where: { userId: req.user.id },
       include: [
-        { model: Accomodation, include: [{ model: Location }] },
+        {
+          model: Accomodation,
+          include: [{ model: Location, as: 'locations' }]
+        },
         { model: Location, as: 'Origin' },
         { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] }
@@ -31,7 +34,7 @@ class Trips {
         { model: Location, as: 'Origin' },
         { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] },
-        { model: Accomodation, include: [{ model: Location }] }
+        { model: Accomodation, include: [{ model: Location, as: 'locations' }] }
       ]
     });
     if (findTrip) {

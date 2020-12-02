@@ -3,7 +3,7 @@ import { Accomodation, Location } from '../database/models';
 class hostAccomodation {
   async getAll(req, res) {
     const accomodations = await Accomodation.findAll({
-      include: { model: Location }
+      include: { model: Location, as: 'locations' }
     });
 
     if (!accomodations) {
@@ -21,7 +21,7 @@ class hostAccomodation {
   }
   async getOne(req, res) {
     const accomodations = await Accomodation.findOne({
-      include: { model: Location },
+      include: { model: Location, as: 'locations' },
       where: { id: req.params.id }
     });
 
