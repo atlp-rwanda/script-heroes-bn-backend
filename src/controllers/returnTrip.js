@@ -1,3 +1,4 @@
+import sgMail from '@sendgrid/mail';
 import {
   User,
   Trip,
@@ -6,16 +7,17 @@ import {
   RequestType,
   Location
 } from '../database/models';
-import sgMail from '@sendgrid/mail';
 import autoMsg from '../helpers/newRequestEmail';
 import { createNotification, createRequest } from '../helpers/notification';
 
 class returnTripController {
   async getAll(req, res) {
     const trips = await Trip.findAll({
+      where: { userId: req.user.id },
       include: [
         { model: Accomodation },
-        { model: Location },
+        { model: Location, as: 'Origin' },
+        { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] }
       ]
     });
@@ -30,6 +32,7 @@ class returnTripController {
       trips
     });
   }
+
   async createTrip(req, res) {
     const {
       origin,
@@ -103,7 +106,8 @@ class returnTripController {
       travelReasons,
       accomodationId: getAccomodation.id,
       requestId: request.id,
-      linemanager: req.user.linemanager
+      linemanager: req.user.linemanager,
+      userId: req.user.id
     };
 
     await Trip.create(newTrip);
@@ -115,11 +119,13 @@ class returnTripController {
       createRequest
     );
     res.status(200).json({
+      requestId: request.id,
       status: 'ok',
       msg: res.__('Trip requested success'),
       trip: newTrip
     });
   }
+
   async deleteTrip(req, res) {
     const trip = await Trip.findOne({ where: { id: req.params.id } });
     if (!trip) {
@@ -134,6 +140,7 @@ class returnTripController {
       msg: res.__('Successfully deleted trip')
     });
   }
+
   async updateTrip(req, res) {
     const trip = await Trip.findOne({ where: { id: req.params.id } });
     if (!trip) {

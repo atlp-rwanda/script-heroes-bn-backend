@@ -16,12 +16,14 @@ module.exports = (sequelize, DataTypes) => {
 
       Trip.belongsTo(models.Location, {
         foreignKey: 'origin',
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
+        as: 'Origin'
       });
 
       Trip.belongsTo(models.Location, {
         foreignKey: 'destination',
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
+        as: 'Destination'
       });
       Trip.belongsTo(models.Accomodation, {
         foreignKey: 'accomodationId',
@@ -52,7 +54,8 @@ module.exports = (sequelize, DataTypes) => {
         references: { model: 'Accomodation', key: 'id' }
       },
       travelReasons: DataTypes.STRING,
-      linemanager: DataTypes.INTEGER
+      linemanager: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER
     },
     {
       sequelize,

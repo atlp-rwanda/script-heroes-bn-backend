@@ -9,7 +9,7 @@ export default {
     });
     return res.status(200).json({
       message: res.__('Requests fetched successfully'),
-      directRequests: directRequests
+      directRequests
     });
   },
   makeDecision: async (req, res) => {

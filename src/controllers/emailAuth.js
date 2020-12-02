@@ -77,6 +77,7 @@ class UserController {
     const saveToken = await AccessToken.create({ token });
 
     return res.status(200).json({
+      id: userAccount.id,
       message: res.__('Your are successfully loged in'),
       token: saveToken.token
     });
@@ -87,6 +88,17 @@ class UserController {
     await AccessToken.destroy({ where: { token } });
     res.status(200).json({
       msg: res.__('Loggout success')
+    });
+  }
+
+  static async getUsers(req, res) {
+    const users = await User.findAll({
+      attributes: ['firstName', 'lastName', 'email', 'id', 'roleId']
+    });
+
+    return res.status(200).json({
+      message: res.__('users fetched successfully'),
+      users
     });
   }
 

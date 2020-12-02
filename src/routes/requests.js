@@ -14,24 +14,4 @@ router.post(
   asyncHandler(RequestsController.createMultiCity)
 );
 
-router.patch(
-  '/open/:id',
-  AuthMiddleware.checkToken,
-  asyncHandler(RequestsController.updateOpenRequests)
-);
-
-router.get(
-  '/:id',
-  AuthMiddleware.checkToken,
-  Middleware.getRequest,
-  asyncHandler(RequestsController.getRequest)
-);
-router.delete(
-  '/:id',
-  AuthMiddleware.checkToken,
-  Middleware.getRequest,
-  asyncHandler(RequestsController.deleteRequest)
-);
-router.get('/', AuthMiddleware.checkToken, asyncHandler(RequestsController.getRequests));
-
 export default router;

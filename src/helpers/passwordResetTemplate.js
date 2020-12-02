@@ -38,7 +38,7 @@ const template = ({ url, token }) => `
           <div class="container">
             <h2>Reset password</h2>
             <p>Click the link below to reset you password:</p>
-            <a href="${url}/api/resetpassword/${token}" class="btn">Reset password</a>
+            <a href="${url}/${token}" class="btn">Reset password</a>
             <p>© Barefoot Nomad Kigali-Rwanda, KK 5 Av</p>
             <p>
               <a href="#" class="links">YouTube</a>

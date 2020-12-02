@@ -4,12 +4,12 @@
 import sgMail from '@sendgrid/mail';
 import template from '../helpers/newRequestEmail';
 import {
+  User,
+  Trip,
   Request,
   Location,
   Accomodation,
-  RequestType,
-  Trip,
-  User
+  RequestType
 } from '../database/models';
 import { createRequest, createNotification } from '../helpers/notification';
 
@@ -29,7 +29,8 @@ class tripController {
       userId: user.id,
       type: 1,
       status: 'pending',
-      linemanager: req.user.linemanager
+      linemanager: req.user.linemanager,
+      userId: user.id
     });
 
     const newTrip = await Trip.create({
@@ -40,7 +41,8 @@ class tripController {
       till,
       accomodationId,
       travelReasons,
-      linemanager: req.user.linemanager
+      linemanager: req.user.linemanager,
+      userId: req.user.id
     });
 
     const tripId = await Trip.findOne({
@@ -64,7 +66,10 @@ class tripController {
       createRequest
     );
     const email = template({ user, lineManager, viewLink });
-    if (process.env.NODE_ENV === 'production' || 'development') {
+    if (
+      process.env.NODE_ENV === 'production' ||
+      process.env.NODE_ENV === 'development'
+    ) {
       await sgMail.send(email);
     }
     res.status(201).json({
@@ -75,8 +80,10 @@ class tripController {
 
   static async getTrips(req, res) {
     const findTrips = await Trip.findAll({
+      where: { userId: req.user.id },
       include: [
-        { model: Location },
+        { model: Location, as: 'Origin' },
+        { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] },
         { model: Accomodation }
       ]
@@ -96,7 +103,8 @@ class tripController {
     const findTrip = await Trip.findOne({
       where: { id: req.params.id },
       include: [
-        { model: Location },
+        { model: Location, as: 'Origin' },
+        { model: Location, as: 'Destination' },
         { model: Request, include: [{ model: User }, { model: RequestType }] },
         { model: Accomodation }
       ]

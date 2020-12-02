@@ -11,7 +11,7 @@ export default {
     if (!emailExists) {
       return res
         .status(404)
-        .json({ err: res.__('Email does NOT exist in our database !!!') });
+        .json({ err: res.__('Email does not exist in our database') });
     }
     const { email } = req.body;
     const token = encode({ email });
@@ -28,10 +28,8 @@ export default {
           )
         });
       })
-      .catch(() => {
-        res.status(400).send({
-          err: res.__('Failed in sending Reset password email !!!')
-        });
+      .catch((err) => {
+        res.status(400).send({ err });
       });
   }
 };

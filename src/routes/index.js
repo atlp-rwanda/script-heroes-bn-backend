@@ -18,6 +18,10 @@ import travelDestination from './travelDestinations';
 import ratings from './accomodations/ratings';
 import onewayBooking from './Trips/TripRequest.route';
 import comment from './comments/comments';
+import rolesRoute from './roles';
+import usersRouter from './users';
+import allTrips from './trips';
+import requests from './requests/requests';
 
 const router = express.Router();
 
@@ -25,6 +29,8 @@ router.use('/auth', users);
 router.use('/accommodations', accomodation);
 router.use('/trips', onewayBooking);
 router.use('/trips', trips);
+router.use('/trips', allTrips);
+router.use('/requests', requests);
 router.use('/profile', profile);
 router.use('/locations', location);
 router.get('/request-types', asyncHandler(RequestsController.getRequestTypes));
@@ -33,12 +39,14 @@ router.use('/accommodations', accomodation);
 router.use('/accomodations/book', bookAccomodation);
 router.use('/host', host);
 router.use('/accommodations', reaction);
-router.use('/requests', manageRequests);
+router.use('/request/manager', manageRequests);
 router.use('/notifications', notificationRouter);
 router.use('/most-traveled', travelDestination);
 router.use('/ratings', ratings);
 router.use('/trip', trip);
 router.use('/chat', chat);
+router.use('/role', rolesRoute);
+router.use('/users', usersRouter);
 router.use('/', comment);
 
 export default router;

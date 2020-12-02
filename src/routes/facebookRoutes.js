@@ -15,7 +15,8 @@ facebookRoute.get(
     const token = encode({
       id: req.user.id,
       firstName: req.user.firstName,
-      lastName: req.user.lastName
+      lastName: req.user.lastName,
+      roleId: req.user.roleId
     });
     const savedToken = await AccessToken.create({ token });
     res.send({

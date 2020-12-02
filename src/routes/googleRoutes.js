@@ -18,7 +18,8 @@ googleRouter.get(
       id: req.user.id,
       firstName: req.user.firstName,
       lastName: req.user.lastName,
-      email: req.user.email
+      email: req.user.email,
+      roleId: req.user.roleId
     });
     const savedToken = await AccessToken.create({ token });
     res.cookie('access_token', savedToken, {

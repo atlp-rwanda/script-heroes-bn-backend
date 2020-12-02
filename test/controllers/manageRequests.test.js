@@ -1,7 +1,7 @@
-import chai, { util } from 'chai';
+import bcrypt from 'bcryptjs';
+import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../src/index';
-import bcrypt from 'bcryptjs';
 import { User, Request, UserRole } from '../../src/database/models';
 
 chai.should();
@@ -124,7 +124,7 @@ describe('Manage requests', () => {
   it('Should approve a request', (done) => {
     chai
       .request(app)
-      .put(`/api/requests/${reqId1}/approve`)
+      .put(`/api/request/manager/${reqId1}/approve`)
       .set({ 'Accept-Language': 'en', 'x-auth-token': tokman1 })
       .end((err, res) => {
         if (err) done(err);
@@ -141,7 +141,7 @@ describe('Manage requests', () => {
   it("Should display manager's direct requests", (done) => {
     chai
       .request(app)
-      .get('/api/requests')
+      .get('/api/request/manager')
       .set({ 'Accept-Language': 'en', 'x-auth-token': tokman1 })
       .end((err, res) => {
         if (err) done(err);
@@ -158,7 +158,7 @@ describe('Manage requests', () => {
   it('Should not display direct requests if not a manager', (done) => {
     chai
       .request(app)
-      .get('/api/requests')
+      .get('/api/request/manager')
       .set({ 'Accept-Language': 'en', 'x-auth-token': tokuser1 })
       .end((err, res) => {
         if (err) done(err);
@@ -171,7 +171,7 @@ describe('Manage requests', () => {
   it('Should not  approve or decline direct request of another manager', (done) => {
     chai
       .request(app)
-      .put(`/api/requests/${reqId2}/approve`)
+      .put(`/api/request/manager/${reqId2}/approve`)
       .set({ 'Accept-Language': 'en', 'x-auth-token': tokman1 })
       .end((err, res) => {
         if (err) done(err);
