@@ -42,7 +42,7 @@ describe('Forgot password', () => {
         done();
       });
   });
-  it('Should return an error if email does NOT exist in DB', (done) => {
+  it('Should return an error if email does not exist in DB', (done) => {
     const theEmail = 'email@email.com';
     chai
       .request(app)
@@ -54,7 +54,7 @@ describe('Forgot password', () => {
         res.body.should.be.a('object');
         res.body.should.have
           .property('err')
-          .eq('Email does NOT exist in our database !!!');
+          .eq('Email does not exist in our database');
         done();
       });
   });
@@ -125,11 +125,11 @@ describe('Forgot password', () => {
         if (err) done(err);
         res.should.have.status(400);
         res.body.should.be.a('object');
-        res.body.should.have.property('err').eq('Confirmation is required');
+        res.body.should.have.property('err').eq('Repeat password field is required');
         done();
       });
   });
-  it('Should return an error if passwords do NOT match', (done) => {
+  it('Should return an error if passwords do not match', (done) => {
     chai
       .request(app)
       .post(`/api/resetPassword/${token}`)

@@ -18,7 +18,7 @@ export default {
       } else {
         res
           .status(400)
-          .json({ error: res.__('The passwords do NOT match !!!') });
+          .json({ error: res.__('The passwords do not match !!!') });
       }
     } catch (err) {
       res.status(404).json({ err: res.__('Invalid token') });

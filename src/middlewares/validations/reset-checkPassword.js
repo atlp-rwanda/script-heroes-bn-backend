@@ -14,14 +14,14 @@ const checkPasswordValidation = async (req, res, next) => {
         ),
         'any.required': res.__('Password is required'),
         'string.pattern.base': res.__(
-          'Password must be at least 5 characters including 4 letters and numbers'
+          'Password must be at least 8 characters including atleast 4 letters and numbers'
         )
       }),
     confirmPassword: Joi.string()
       .required()
       .messages({
-        'string.empty': res.__('Please fill in the confirmation'),
-        'any.required': res.__('Confirmation is required')
+        'string.empty': res.__('Please fill in the repeat password field'),
+        'any.required': res.__('Repeat password field is required')
       })
   });
   const { error } = schema.validate(req.body);
