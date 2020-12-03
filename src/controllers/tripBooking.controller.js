@@ -30,7 +30,7 @@ class tripController {
       type: 1,
       status: 'pending',
       linemanager: req.user.linemanager,
-      userId: user.id
+      reason: travelReasons
     });
 
     const newTrip = await Trip.create({
@@ -146,4 +146,5 @@ class tripController {
     }
   }
 }
+
 export default tripController;
