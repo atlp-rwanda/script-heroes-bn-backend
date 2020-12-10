@@ -55,13 +55,15 @@ describe('Manage requests', () => {
       userId: _user1.id,
       status: 'pending',
       type: 3,
-      linemanager: manager1.id
+      linemanager: manager1.id,
+      reason: 'Dancing'
     });
     const request1 = await Request.create({
       userId: _user2.id,
       status: 'pending',
       type: 3,
-      linemanager: manager2.id
+      linemanager: manager2.id,
+      reason: 'Dancing'
     });
     const req1 = await Request.findOne({ where: { userId: _user1.id } });
     reqId1 = req1.id;

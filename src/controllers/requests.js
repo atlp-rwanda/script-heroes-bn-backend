@@ -38,7 +38,8 @@ class RequestsController {
       userId: user.id,
       status: 'pending',
       type: 3,
-      linemanager: user.linemanager
+      linemanager: user.linemanager,
+      reason: 'Multi-city'
     });
     const lineManager = await User.findOne({ where: { id: user.linemanager } });
 
@@ -58,8 +59,8 @@ class RequestsController {
 
     const email = template({ user, lineManager });
     if (
-      process.env.NODE_ENV === 'production' ||
-      process.env.NODE_ENV === 'development'
+      process.env.NODE_ENV === 'production'
+      || process.env.NODE_ENV === 'development'
     ) {
       await sgMail.send(email);
     }
@@ -162,8 +163,8 @@ class RequestsController {
 
     const email = updateTemplate({ user, lineManager });
     if (
-      process.env.NODE_ENV === 'production' ||
-      process.env.NODE_ENV === 'development'
+      process.env.NODE_ENV === 'production'
+      || process.env.NODE_ENV === 'development'
     ) {
       await sgMail.send(email);
     }

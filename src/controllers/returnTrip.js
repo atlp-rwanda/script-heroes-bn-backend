@@ -48,7 +48,8 @@ class returnTripController {
       status: 'pending',
       userId: req.user.id,
       type: 2,
-      linemanager: req.user.linemanager
+      linemanager: req.user.linemanager,
+      reason: travelReasons
     };
 
     const lineManager = await User.findOne({
