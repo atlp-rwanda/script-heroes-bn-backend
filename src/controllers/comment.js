@@ -1,4 +1,4 @@
-import { Comment } from '../database/models';
+import { Comment, User, Request } from '../database/models';
 
 class commentController {
   static async comment(req, res) {
@@ -15,7 +15,9 @@ class commentController {
   }
 
   static async getAllComments(req, res) {
-    const getAllComments = await Comment.findAll();
+    const getAllComments = await Comment.findAll({
+      include: [{ model: User }, { model: Request }]
+    });
 
     res.status(201).json({
       message: res.__('Successful'),
@@ -28,7 +30,8 @@ class commentController {
     const getOneComment = await Comment.findOne({
       where: {
         id
-      }
+      },
+      include: [{ model: User }, { model: Request }]
     });
     if (!getOneComment) {
       return res
