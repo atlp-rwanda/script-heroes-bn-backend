@@ -1,11 +1,14 @@
 import express from 'express';
-import { AccessToken } from '../database/models';
+import cookieParser from 'cookie-parser';
 import faceConfig from '../middlewares/facebookSign';
 import { encode } from '../utils/jwtFunctions';
+import { AccessToken } from '../database/models';
 
 const facebookRoute = express.Router();
 
 facebookRoute.use(faceConfig.initialize());
+facebookRoute.use(cookieParser());
+
 facebookRoute.get('/users/auth/facebook', faceConfig.authenticate('facebook'));
 
 facebookRoute.get(
@@ -19,11 +22,8 @@ facebookRoute.get(
       roleId: req.user.roleId
     });
     const savedToken = await AccessToken.create({ token });
-    res.send({
-      message: 'Facebook Login Success',
-      user: req.user,
-      token: savedToken.token
-    });
+    res.cookie('token', savedToken);
+    res.redirect(process.env.FRONTEND_URL);
   }
 );
 export default facebookRoute;
