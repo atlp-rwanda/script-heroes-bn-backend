@@ -1,4 +1,4 @@
-import { Accomodation, Room } from '../database/models';
+import { Accomodation, Room, Location } from '../database/models';
 
 export default {
   addAccomodation: async (req, res) => {
@@ -33,10 +33,8 @@ export default {
   getAccomodations: async (req, res) => {
     const accomodations = await Accomodation.findAll({
       include: [
-        {
-          model: Room,
-          as: 'rooms'
-        }
+        { model: Location, as: 'locations' },
+        { model: Room, as: 'rooms' }
       ]
     });
 
@@ -47,10 +45,8 @@ export default {
     const accomodation = await Accomodation.findOne({
       where: { id },
       include: [
-        {
-          model: Room,
-          as: 'rooms'
-        }
+        { model: Location, as: 'locations' },
+        { model: Room, as: 'rooms' }
       ]
     });
     if (!accomodation) {
