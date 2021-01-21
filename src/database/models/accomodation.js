@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       Accomodation.belongsTo(models.Location, {
         foreignKey: 'locationId',
+        as: 'locations',
         onDelete: 'CASCADE'
       });
       Accomodation.hasMany(models.Trip, { foreignKey: 'accomodationId' });
