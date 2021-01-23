@@ -81,7 +81,7 @@ export default {
     await Accomodation.update(
       {
         facilityName: req.body.facilityName || accomodation.facilityName,
-        location: req.body.location || accomodation.location,
+        locationId: req.body.locationId || accomodation.locationId,
         description: req.body.description || accomodation.description,
         photoUrl: req.body.photoUrl || accomodation.photoUrl
       },
