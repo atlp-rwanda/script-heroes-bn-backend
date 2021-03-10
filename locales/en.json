@@ -302,5 +302,7 @@
 	"Password must be at least 8 characters including atleast 4 letters and numbers": "Password must be at least 8 characters including atleast 4 letters and numbers",
 	"Please fill in the repeat password field": "Please fill in the repeat password field",
 	"Repeat password field is required": "Repeat password field is required",
-	"The passwords do not match !!!": "The passwords do not match !!!"
+	"data": "data",
+	"The passwords do not match !!!": "The passwords do not match !!!",
+	"Your are successfully logged in": "Your are successfully logged in"
 }

@@ -5,7 +5,6 @@ import RoleService from '../services/role.service';
 class AuthMiddleware {
   static async checkToken(req, res, next) {
     const { 'x-auth-token': token } = req.headers;
-
     if (!token) {
       return res.status(400).json({
         message: 'Please Login'
@@ -56,7 +55,9 @@ class AuthMiddleware {
     // const userParam = await decode(token);
 
     const { roleId } = req.user;
-    if (roleId === null) return res.status(401).json({ msg: res.__('Unauthorized request') });
+    if (roleId === null) {
+      return res.status(401).json({ msg: res.__('Unauthorized request') });
+    }
 
     const role = await RoleService.findRoleById(roleId);
 

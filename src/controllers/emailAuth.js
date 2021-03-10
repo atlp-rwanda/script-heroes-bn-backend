@@ -78,7 +78,7 @@ class UserController {
 
     return res.status(200).json({
       id: userAccount.id,
-      message: res.__('Your are successfully loged in'),
+      message: res.__('Your are successfully logged in'),
       token: saveToken.token
     });
   }
