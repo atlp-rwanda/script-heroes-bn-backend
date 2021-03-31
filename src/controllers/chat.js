@@ -1,5 +1,4 @@
 import { ChatMessage, User } from '../database/models';
-import { socketServer } from '../index';
 
 class Chat {
   static async pastMessages(req, res) {
@@ -8,12 +7,12 @@ class Chat {
         model: User,
         as: 'sender',
         attributes: ['firstName', 'lastName', 'email']
-      }
+      },
+      order: [['id', 'ASC']]
     });
 
     return res.status(200).json({
-      message: res.__('success'),
-      data: messages
+      messages
     });
   }
 
@@ -32,7 +31,6 @@ class Chat {
         email
       }
     };
-    socketServer.emit('message', createdMessage);
 
     return res.status(201).json({
       message: res.__('message sent successfully'),

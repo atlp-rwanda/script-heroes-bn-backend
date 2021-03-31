@@ -34,7 +34,7 @@ describe('Requests', () => {
     chai
       .request(app)
       .post('/api/auth/login')
-      .send({ email: 'test1@mail.com', password: 'Password123' })
+      .send({ email: 'john@email.com', password: 'Password123' })
       .end((err, res) => {
         if (err) done(err);
         token = res.body.token;
@@ -65,8 +65,6 @@ describe('Requests', () => {
       .end((err, res) => {
         if (err) done(err);
         res.should.have.status(200);
-        res.body.message.should.equal('success');
-        res.body.data.should.be.an('array');
         done();
       });
   });
